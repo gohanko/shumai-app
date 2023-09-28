@@ -2,9 +2,9 @@ import React from 'react'
 
 const SourceExplorer = () => {
     return (
-        <div className='w-72'>
-            <div className={'h-10 bg-zinc-700'}></div>
-            <div className={'h-full bg-zinc-800 border-r border-solid border-zinc-700'}></div>
+        <div className='flex-2 flex flex-col h-screen w-72 m-0'>
+            <div className={'flex h-10 bg-zinc-700'}></div>
+            <div className={'flex-1 bg-zinc-800 border-r border-solid border-zinc-700'}></div>
         </div>
     )
 }
