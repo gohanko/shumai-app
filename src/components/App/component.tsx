@@ -1,13 +1,13 @@
 import React from 'react';
-import TinySidebar from '../TinySidebar';
-import SourceExplorer from '../SourceExplorer';
+import ActivityBar from '../ActivityBar';
+import PrimarySidebar from '../PrimarySidebar';
 import Workspace from '../Workspace';
 
 function App() {
     return (
         <div className='flex'>
-            <TinySidebar />
-            <SourceExplorer />
+            <ActivityBar />
+            <PrimarySidebar />
             <Workspace />
         </div>
     )

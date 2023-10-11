@@ -1,7 +1,7 @@
 import React from 'react'
 import DataSourceList from '../DataSourceList'
 
-const SourceExplorer = () => {
+const PrimarySidebar = () => {
     return (
         <div className='flex-2 flex flex-col h-screen w-72 m-0'>
             <div className={'flex h-10 bg-zinc-700'}></div>
@@ -12,4 +12,4 @@ const SourceExplorer = () => {
     )
 }
 
-export default SourceExplorer
+export default PrimarySidebar

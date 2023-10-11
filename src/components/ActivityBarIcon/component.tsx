@@ -1,7 +1,7 @@
 import React from 'react'
-import { TinySidebarIconProps } from './types'
+import { ActivityBarIconProps } from './types'
 
-const TinySidebarIcon = ({ icon, tooltip_label = 'Default Tooltip Label' }: TinySidebarIconProps) => {
+const ActivityBarIcon = ({ icon, tooltip_label = 'Default Tooltip Label' }: ActivityBarIconProps) => {
     return (
         <div className='relative flex items-center justify-center h-10 w-10 mb-2 mx-auto shadow-lg text-white group cursor-pointer'>
             { icon }
@@ -13,4 +13,4 @@ const TinySidebarIcon = ({ icon, tooltip_label = 'Default Tooltip Label' }: Tiny
     )
 }
 
-export default TinySidebarIcon
+export default ActivityBarIcon
