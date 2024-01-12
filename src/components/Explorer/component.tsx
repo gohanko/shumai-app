@@ -7,7 +7,6 @@ const Explorer = () => (
     <div className='flex-2 w-80 h-full flex flex-col bg-zinc-900 border-solid border-r border-t border-zinc-700'>
         <div className='h-10'>
             <IconButton item={<FontAwesomeIcon icon={faPlus} />} />
-
         </div>
 
         <div className="flex-1 border-solid border-t border-zinc-700">

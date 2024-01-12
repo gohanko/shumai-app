@@ -1,0 +1,34 @@
+import React from "react";
+import IconButton from "../IconButton";
+import { faXmark, faFolderOpen, faCubes } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+interface CreationModalItemProps {
+    icon: any,
+    label: string
+}
+
+const CreationModalItem = ({ icon, label }: CreationModalItemProps) => (
+    <div className="w-32 h-32 text-zinc-500 flex flex-col gap-2 items-center justify-center hover:bg-zinc-800 hover:border-solid hover:border hover:border-zinc-800 hover:cursor-pointer rounded-md">
+        <FontAwesomeIcon icon={icon} className="w-8 h-8"/>
+        <p className="text-lg">{label}</p>
+    </div>
+)
+
+const CreationModal = () => (
+    <div className="w-1/2 h-2/3 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col bg-zinc-900 border-solid border border-zinc-700 rounded-md">
+        <div className="h-10 flex">
+            <div className="flex-1 items-start"></div>
+            <div className="flex-1 flex justify-end">
+                <IconButton item={<FontAwesomeIcon icon={faXmark} />} />
+            </div>
+        </div>
+        <div className="flex-1 flex px-10 gap-2">
+            <CreationModalItem icon={faCubes} label={'Collections'} />
+            <CreationModalItem icon={faFolderOpen} label={'File'} />
+        </div>
+        <div className="h-20 bg-zinc-800 border-solid border-t border-zinc-700"></div>
+    </div>
+);
+
+export default CreationModal;
