@@ -1,16 +1,13 @@
 import React from 'react';
-import ActivityBar from '../Sidebar';
-import PrimarySidebar from '../Explorer';
-import Workspace from '../Workspace';
+import Toolbar from '../Toolbar';
+import Main from '../Main';
 
-function App() {
-    return (
-        <div className='flex'>
-            <ActivityBar />
-            <PrimarySidebar />
-            <Workspace />
-        </div>
-    )
-}
+const App = () => (
+    <div className='h-screen flex flex-col'>
+        <Toolbar />
+        <Main />       
+    </div>
+)
+
 
 export default App;
