@@ -4,7 +4,7 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import IconButton from '../IconButton'
 
 const Explorer = () => (
-    <div className='w-80 h-full flex flex-col bg-zinc-900 border-solid border-r border-t border-zinc-700'>
+    <div className='flex-2 w-80 h-full flex flex-col bg-zinc-900 border-solid border-r border-t border-zinc-700'>
         <div className='h-10'>
             <IconButton item={<FontAwesomeIcon icon={faPlus} />} />
 

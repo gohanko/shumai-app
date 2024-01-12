@@ -16,7 +16,7 @@ const TabHeader = ({ label, isActive }: TabHeaderProp) => (
 )
 
 const Workspace = () => (
-    <div className='w-full flex-2 flex flex-col bg-zinc-900 border-solid border-t border-zinc-700'>
+    <div className='w-full flex-1 flex flex-col bg-zinc-900 border-solid border-t border-zinc-700'>
         <div className="w-full h-10 flex">
             <TabHeader label="New Tab"/>
             <TabHeader label="New Tab" isActive={true} />
