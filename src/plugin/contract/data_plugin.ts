@@ -1,6 +1,6 @@
 abstract class DataPlugin {
     options: any;
-    abstract start(param: any): any;
+    abstract loadData(param: any): any;
 }
 
 export default DataPlugin;
