@@ -1,5 +1,5 @@
 import React from "react";
-import ActivityBarIcon from "../ActivityBarIcon/component";
+import ActivityBarIcon from "../SidebarIcon/component";
 import { TINY_SIDEBAR_NAVIGATION_ITEMS } from "./constants";
 
 const ActivityBar = () => {

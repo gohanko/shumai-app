@@ -1,5 +1,5 @@
 import React from 'react'
-import DataSourceList from '../DataSourceList'
+import DataSourceList from '../CollectionList'
 
 const PrimarySidebar = () => {
     return (

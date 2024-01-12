@@ -1,6 +1,6 @@
 import React from 'react';
-import ActivityBar from '../ActivityBar';
-import PrimarySidebar from '../PrimarySidebar';
+import ActivityBar from '../Sidebar';
+import PrimarySidebar from '../Explorer';
 import Workspace from '../Workspace';
 
 function App() {
