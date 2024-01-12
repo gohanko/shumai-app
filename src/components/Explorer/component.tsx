@@ -1,15 +1,19 @@
 import React from 'react'
-import DataSourceList from '../CollectionList'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import IconButton from '../IconButton'
 
-const PrimarySidebar = () => {
-    return (
-        <div className='flex-2 flex flex-col h-screen w-72 m-0'>
-            <div className={'flex h-10 bg-zinc-700'}></div>
-            <div className={'flex-1 bg-zinc-800 border-r border-solid border-zinc-700'}>
-                <DataSourceList />
-            </div>
+const Explorer = () => (
+    <div className='w-80 h-full flex flex-col bg-zinc-900 border-solid border-r border-t border-zinc-700'>
+        <div className='h-10'>
+            <IconButton item={<FontAwesomeIcon icon={faPlus} />} />
+
         </div>
-    )
-}
 
-export default PrimarySidebar
+        <div className="flex-1 border-solid border-t border-zinc-700">
+
+        </div>
+    </div>
+)
+
+export default Explorer

@@ -1,3 +1,3 @@
-import PrimarySidebar from "./component"
+import Explorer from "./component"
 
-export default PrimarySidebar
+export default Explorer
