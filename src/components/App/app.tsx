@@ -3,10 +3,10 @@ import Toolbar from '../Toolbar';
 import Main from '../Main';
 import Status from '../Status';
 import CreationModal from '../CreationModal';
-import useCollectionStore from '../../stores/collection/collection';
+import { useCollectionStore } from '../../stores';
 
 const App = () => {
-    const initializeCollection = useCollectionStore((state) => state.initializeCollection)
+    const initializeCollection = useCollectionStore((state: any) => state.initializeCollection)
     initializeCollection();
 
     return (
