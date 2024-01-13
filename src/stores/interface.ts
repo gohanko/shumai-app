@@ -7,7 +7,7 @@ interface CreationModalSliceType {
     closeCreationModal: () => void
 }
 
-const creatCreationModalSlice: StateCreator<CreationModalSliceType> = (set: any) => ({
+const createCreationModalSlice: StateCreator<CreationModalSliceType> = (set: any) => ({
     isCreationModalOpen: false,
     toggleCreationModal: () => set((state: any) => ({ isCreationModalOpen: !state.isCreationModalOpen })),
     closeCreationModal: () => set((state: any) => ({ isCreationModalOpen: false })),
@@ -17,7 +17,7 @@ const useInterfaceStore = create<CreationModalSliceType>()(
     devtools(
         persist(
             (...a) => ({
-                ...creatCreationModalSlice(...a),
+                ...createCreationModalSlice(...a),
             }),
             {
                 name: 'interface-storage'
