@@ -1,3 +1,3 @@
-import Main from "./component"
+import Main from "./main"
 
 export default Main

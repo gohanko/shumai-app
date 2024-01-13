@@ -1,3 +1,3 @@
-import Status from './component';
+import Status from './status';
 
 export default Status;

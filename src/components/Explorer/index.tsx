@@ -1,3 +1,3 @@
-import Explorer from "./component"
+import Explorer from "./explorer"
 
 export default Explorer

@@ -1,3 +1,3 @@
-import Workspace from "./components";
+import Workspace from "./workspace";
 
 export default Workspace

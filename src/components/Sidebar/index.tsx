@@ -1,3 +1,3 @@
-import ActivityBar from "./component";
+import ActivityBar from "./sidebar";
 
 export default ActivityBar

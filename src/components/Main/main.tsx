@@ -1,5 +1,5 @@
 import React from "react";
-import Sidebar from "../Sidebar/component";
+import Sidebar from "../Sidebar/sidebar";
 import Explorer from "../Explorer";
 import Workspace from '../Workspace';
 

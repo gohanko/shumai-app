@@ -1,3 +1,3 @@
-import CreationModal from "./component";
+import CreationModal from "./creation_modal";
 
 export default CreationModal;
