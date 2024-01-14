@@ -1,7 +1,7 @@
 import path, { parse } from "path";
 import fs from 'fs';
 import xlsx from 'xlsx';
-import { DataPlugin } from "../../../contract";
+import { DataPlugin } from "plugin/contract";
 
 class FileLoader extends DataPlugin {
     private filename: string;

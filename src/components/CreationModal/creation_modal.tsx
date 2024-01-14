@@ -1,8 +1,8 @@
 import React from "react";
-import IconButton from "../IconButton";
+import IconButton from "ui/IconButton";
 import { faXmark, faFolderOpen, faCubes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useInterfaceStore } from "../../stores";
+import { useInterfaceStore } from "stores";
 
 interface CreationModalItemProps {
     icon: any,

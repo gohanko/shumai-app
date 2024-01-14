@@ -1,7 +1,7 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
-import IconButton from "../IconButton";
+import IconButton from "ui/IconButton";
 
 interface TabHeaderProp {
     label: string,

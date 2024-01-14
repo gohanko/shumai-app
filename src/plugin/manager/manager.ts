@@ -1,5 +1,5 @@
 import path from "path";
-import requireModule from '../../shared/require_module';
+import requireModule from 'shared/require_module';
 
 interface IPlugin {
     name: string,

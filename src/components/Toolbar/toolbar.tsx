@@ -1,7 +1,7 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faArrowLeft, faArrowRight, faMagnifyingGlass, faBell } from "@fortawesome/free-solid-svg-icons";
-import IconButton from "../IconButton";
+import IconButton from "ui/IconButton";
 
 const ToolbarNavigation = () => (
     <div className="flex-2 flex h-10">

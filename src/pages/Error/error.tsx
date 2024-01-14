@@ -2,7 +2,7 @@ import React from "react";
 import { useRouteError } from "react-router-dom";
 
 const Error = () => {
-    const error = useRouteError();
+    const error: any = useRouteError();
 
     return (
         <div className="w-full bg-zinc-900 text-white border-solid border-t border-zinc-700">

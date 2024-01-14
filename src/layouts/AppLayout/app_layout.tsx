@@ -1,8 +1,8 @@
 import React from 'react';
-import Toolbar from '../../components/Toolbar';
-import Status from '../../components/Status';
-import CreationModal from '../../components/CreationModal';
-import Sidebar from '../../components/Sidebar';
+import Toolbar from 'components/Toolbar';
+import Status from 'components/Status';
+import CreationModal from 'components/CreationModal';
+import Sidebar from 'components/Sidebar';
 import { Outlet } from 'react-router';
 
 interface AppLayoutType {

@@ -1,8 +1,8 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCubes, faLaptopCode, faPuzzlePiece, faGear } from "@fortawesome/free-solid-svg-icons";
-import IconButton from "../IconButton";
 import { NavLink } from "react-router-dom";
+import IconButton from "ui/IconButton";
 
 const Sidebar = () => (
     <div className="w-10 h-full flex-3 flex flex-col bg-zinc-900 border-solid border-r border-t border-zinc-700">
