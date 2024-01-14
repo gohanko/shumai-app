@@ -1,16 +1,38 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { createBrowserRouter, Navigate, RouterProvider } from "react-router-dom";
 import reportWebVitals from './reportWebVitals';
-import App from './components/App';
+import App from './pages/App';
+import AppLayout from './layout/AppLayout';
+import Error from './pages/Error';
 
 import "@fontsource/inter";
 import './index.css';
+import Workspace from './pages/Workspace';
+
+const router = createBrowserRouter([
+    {
+        path: '/',
+        element: <App />,
+        errorElement: <AppLayout><Error /></AppLayout>,
+        children: [
+            {
+                index: true,
+                element: <Navigate to="/workspace/" replace />
+            },
+            {
+                path: '/workspace/',
+                element: <Workspace />,
+            }
+        ]
+    }
+]);
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 
 root.render(
     <React.StrictMode>
-        <App />
+        <RouterProvider router={router} />
     </React.StrictMode>
 );
 

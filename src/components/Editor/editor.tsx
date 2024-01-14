@@ -15,7 +15,7 @@ const TabHeader = ({ label, isActive }: TabHeaderProp) => (
     </div>
 )
 
-const Workspace = () => (
+const Editor = () => (
     <div className='w-full flex-1 flex flex-col bg-zinc-900 border-solid border-t border-zinc-700'>
         <div className="w-full h-10 flex">
             <TabHeader label="New Tab"/>
@@ -28,4 +28,4 @@ const Workspace = () => (
     </div>
 )
 
-export default Workspace
+export default Editor
