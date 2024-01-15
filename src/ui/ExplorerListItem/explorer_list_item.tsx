@@ -1,6 +1,6 @@
 import React from "react"
 
-interface ListItemType {
+interface ExplorerListItemType {
     item_1: any,
     item_2: any,
     item_3: any,
@@ -8,7 +8,7 @@ interface ListItemType {
     onClick?: any,
 }
 
-const ListItem = ({ item_1, item_2, item_3, item_4, onClick }: ListItemType) => (
+const ExplorerListItem = ({ item_1, item_2, item_3, item_4, onClick }: ExplorerListItemType) => (
     <div className="w-full h-9 px-4 gap-2.5 flex hover:bg-zinc-700 cursor-pointer" onClick={onClick}>
         <div className="w-5 flex-2 flex items-center text-zinc-500">
             {item_1}
@@ -29,4 +29,4 @@ const ListItem = ({ item_1, item_2, item_3, item_4, onClick }: ListItemType) => 
 )
 
 
-export default ListItem;
+export default ExplorerListItem;

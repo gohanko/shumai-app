@@ -1,13 +1,13 @@
 import { faAngleRight, faAngleDown, faFolderOpen } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import ExplorerItem from 'ui/ListItem';
+import ListItem from 'ui/ExplorerListItem';
 import React, { useState } from 'react';
 
-interface ExplorerListItemType {
+interface CollectionExplorerListItemType {
     collection: any
 }
 
-const ExplorerListItem = ({ collection }: ExplorerListItemType) => {
+const CollectionExplorerListItem = ({ collection }: CollectionExplorerListItemType) => {
     const [isOpen, setIsOpen] = useState(false);
 
     const toggleSetIsOpen = () => {
@@ -15,7 +15,7 @@ const ExplorerListItem = ({ collection }: ExplorerListItemType) => {
     }
 
     return (
-        <ExplorerItem
+        <ListItem
             item_1={isOpen ? <FontAwesomeIcon icon={faAngleDown} /> : <FontAwesomeIcon icon={faAngleRight} />}
             item_2={<FontAwesomeIcon icon={faFolderOpen} />}
             item_3={collection.name}
@@ -24,4 +24,4 @@ const ExplorerListItem = ({ collection }: ExplorerListItemType) => {
     )
 }
 
-export default ExplorerListItem;
+export default CollectionExplorerListItem;

@@ -1,8 +1,8 @@
 import React from 'react'
-import ExplorerList from 'components/ExplorerList/explorer_list'
+import CollectionExplorer from 'components/CollectionExplorer/collection_explorer'
 
 const Explorer = () => (
-    <ExplorerList />
+    <CollectionExplorer />
 )
 
 export default Explorer
