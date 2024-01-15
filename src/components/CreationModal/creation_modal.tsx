@@ -56,6 +56,10 @@ const CreationModal = () => {
                         <CreationModalItem
                             icon={faFolderOpen}
                             label={'File'}
+                            onClick={() => {
+                                
+                                closeCreationModal();
+                            }}
                         />
                     </div>
                     <div className="h-20 bg-zinc-800 border-solid border-t border-zinc-700"></div>

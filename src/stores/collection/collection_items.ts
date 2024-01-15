@@ -10,12 +10,12 @@ interface CollectionItemType {
     collection_list_id: string,
 }
 
-interface CollectionItemListSliceType {
+interface CollectionItemsSliceType {
     collection_items: CollectionItemType[],
     createCollectionItem: any,
 }
 
-const createCollectionItemListSlice: StateCreator<CollectionItemListSliceType> = (set: any) => ({
+const createCollectionItemsSlice: StateCreator<CollectionItemsSliceType> = (set: any) => ({
     collection_items: [],
     createCollectionItem: (input: string, category: number) => set(
         produce((draft: any) => {
@@ -46,10 +46,15 @@ const createCollectionItemListSlice: StateCreator<CollectionItemListSliceType> =
     )
 })
 
+const getCollectionItem = (collection_items: Array<CollectionItemType>, collection_list_id: string) => {
+    return collection_items.filter((collection_item) => collection_item.collection_list_id === collection_list_id)
+}
+
 export type {
-    CollectionItemListSliceType
+    CollectionItemsSliceType
 }
 
 export {
-    createCollectionItemListSlice
+    createCollectionItemsSlice,
+    getCollectionItem
 }

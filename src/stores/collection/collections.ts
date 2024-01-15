@@ -7,14 +7,14 @@ interface CollectionType {
     name: string,
 }
 
-interface CollectionListSliceType {
+interface CollectionsSliceType {
     collections: CollectionType[],
     initializeCollection: any,
     createCollection: any,
     deleteCollection: any,
 }
 
-const createCollectionListSlice: StateCreator<CollectionListSliceType> = (set: any) => ({
+const createCollectionsSlice: StateCreator<CollectionsSliceType> = (set: any) => ({
     collections: [],
     initializeCollection: () => set(
         produce((draft: any) => {
@@ -52,9 +52,9 @@ const createCollectionListSlice: StateCreator<CollectionListSliceType> = (set: a
 })
 
 export type {
-    CollectionListSliceType
+    CollectionsSliceType
 }
 
 export {
-    createCollectionListSlice,
+    createCollectionsSlice,
 }
