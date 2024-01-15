@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { faAngleRight, faAngleDown, faFolderOpen, faEllipsis, faFileCsv } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ExplorerListItem from 'ui/ExplorerListItem';
-import { useCollectionStore } from 'stores';
+import { useCollectionStore, useInterfaceStore } from 'stores';
 import { getCollectionFromParentId } from 'stores/collection/collections';
 import IconButton from 'ui/IconButton';
 import ExplorerListItemLine from 'ui/ExplorerListItemLine';
@@ -13,16 +13,17 @@ interface CollectionExplorerListItemType {
 
 const CollectionExplorerListItem = ({ collection }: CollectionExplorerListItemType) => {
     const collections = useCollectionStore((store) => store.collections);
+    const open_tabs = useInterfaceStore((state) => state.open_tabs);
+    const createTab = useInterfaceStore((state) => state.createTab);
+
+
     const [isOpen, setIsOpen] = useState(false);
     const [isOpenContextMenu, setIsOpenContextMenu] = useState(false);
 
-    const toggleIsOpen = (event: any) => {
-        setIsOpen(!isOpen)
-    }
-    
-    const toggleIsOpenContextMenu = () => setIsOpenContextMenu(!isOpenContextMenu);
-
     const collection_item_list = getCollectionFromParentId(collections, collection.id)
+
+    const toggleIsOpen = (event: any) => setIsOpen(!isOpen)    
+    const toggleIsOpenContextMenu = () => setIsOpenContextMenu(!isOpenContextMenu);
 
     return (
         <>
@@ -38,6 +39,7 @@ const CollectionExplorerListItem = ({ collection }: CollectionExplorerListItemTy
                     item_1={<ExplorerListItemLine />}
                     item_2={<FontAwesomeIcon icon={faFileCsv} />}
                     item_3={collection_item.name}
+                    onClick={() => createTab(collection_item.id)}
                 />
             ))}
         </>

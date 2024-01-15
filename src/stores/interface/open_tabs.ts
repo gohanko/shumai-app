@@ -4,6 +4,7 @@ import { produce } from 'immer';
 
 interface TabType {
     id: string,
+    collection_id: string
 }
 
 interface TabsSliceType {
@@ -16,10 +17,11 @@ interface TabsSliceType {
 const createOpenTabsSlice: StateCreator<TabsSliceType> = (set: any) => ({
     open_tabs: [],
     selected_tab: '',
-    createTab: () => set(
+    createTab: (collection_id: string) => set(
         produce((draft: any) => {
             draft.open_tabs.push({
                 id: uuidv4(),
+                collection_id: collection_id
             })
         })
     ),

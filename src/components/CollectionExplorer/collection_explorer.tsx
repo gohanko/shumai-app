@@ -25,8 +25,8 @@ const CollectionExplorer = () => {
     const parent_collections = collections.filter((collection: any) => !collection.parent_id)
 
     return (
-        <div className='flex-2 w-80 h-full flex flex-col bg-zinc-900 border-solid border-r border-t border-zinc-700 overflow-y-scroll'>
-            <ExplorerToolbar>
+        <>
+        <ExplorerToolbar>
                 <IconButton
                     item={<FontAwesomeIcon icon={faPlus} />}
                     onClick={toggleCreationModal}    
@@ -43,7 +43,7 @@ const CollectionExplorer = () => {
                     <CollectionExplorerListInput /> 
                 }
             </ExplorerList>
-        </div>
+        </>
     )
 }
 

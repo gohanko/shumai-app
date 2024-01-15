@@ -67,6 +67,7 @@ const getCollectionFromParentId = (collections: Array<CollectionType>, id: strin
 }
 
 export type {
+    CollectionType,
     CollectionsSliceType
 }
 
