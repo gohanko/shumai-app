@@ -1,4 +1,4 @@
-import path, { parse } from "path";
+import path from "path";
 import fs from 'fs';
 import xlsx from 'xlsx';
 import { DataPlugin } from "plugin/contract";

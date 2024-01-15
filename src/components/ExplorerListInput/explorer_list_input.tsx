@@ -2,10 +2,10 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleRight, faFolderOpen } from "@fortawesome/free-solid-svg-icons";
 import { useCollectionStore, useInterfaceStore } from "stores";
-import ExplorerItem from "components/ExplorerItem";
+import ExplorerListItem from "ui/ListItem";
 import InputField from "ui/InputField";
 
-const ExplorerInput = () => {
+const ExplorerListInput = () => {
     const createCollection = useCollectionStore(store => store.createCollection);
     const setIsAddNewCollection = useInterfaceStore((state: any) => state.setIsAddNewCollection)
 
@@ -24,12 +24,12 @@ const ExplorerInput = () => {
     }
 
     return (
-        <ExplorerItem 
-            first_item={<FontAwesomeIcon icon={faAngleRight} />}
-            second_item={<FontAwesomeIcon icon={faFolderOpen} />}
-            third_item={<InputField onKeyDown={handleOnEnter}/>}
+        <ExplorerListItem 
+            item_1={<FontAwesomeIcon icon={faAngleRight} />}
+            item_2={<FontAwesomeIcon icon={faFolderOpen} />}
+            item_3={<InputField onKeyDown={handleOnEnter}/>}
         />
     )
 }
 
-export default ExplorerInput;
+export default ExplorerListInput;
