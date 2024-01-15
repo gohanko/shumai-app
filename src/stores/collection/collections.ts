@@ -5,6 +5,9 @@ import { produce } from 'immer';
 interface CollectionType {
     id: string,
     name: string,
+    input?: string,
+    category?: number,
+    parent_id?: string,
 }
 
 interface CollectionsSliceType {
@@ -14,23 +17,28 @@ interface CollectionsSliceType {
     deleteCollection: any,
 }
 
+const default_collection_id = 'default-collection'
+
 const createCollectionsSlice: StateCreator<CollectionsSliceType> = (set: any) => ({
     collections: [],
     initializeCollection: () => set(
         produce((draft: any) => {
             if (!draft.collections.length) {
                 draft.collections.push({
-                    id: 'default-collection',
+                    id: default_collection_id,
                     name: 'Default Collection',
                 })
             }
         })
     ),
-    createCollection: (name: string) => set(
+    createCollection: (name: string, input: string, category: number, parent_id: string) => set(
         produce((draft: any) => {
             draft.collections.push({
                 id: uuidv4(),
                 name: name,
+                input: input,
+                category: category,
+                parent_id: parent_id,
             })
         })
     ),
@@ -42,6 +50,9 @@ const createCollectionsSlice: StateCreator<CollectionsSliceType> = (set: any) =>
             }
 
             collection.name = new_collection.name
+            collection.input = new_collection.input
+            collection.category = new_collection.category
+            collection.parent_id = new_collection.parent_id
         })
     ),
     deleteCollection: (id: string) => set(
@@ -51,10 +62,15 @@ const createCollectionsSlice: StateCreator<CollectionsSliceType> = (set: any) =>
     )
 })
 
+const getCollectionFromParentId = (collections: Array<CollectionType>, id: string) => {
+    return collections.filter((collection) => collection.parent_id === id)
+}
+
 export type {
     CollectionsSliceType
 }
 
 export {
     createCollectionsSlice,
+    getCollectionFromParentId
 }

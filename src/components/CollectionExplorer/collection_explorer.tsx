@@ -22,8 +22,10 @@ const CollectionExplorer = () => {
         }
     }
 
+    const parent_collections = collections.filter((collection: any) => !collection.parent_id)
+
     return (
-        <div className='flex-2 w-80 h-full flex flex-col bg-zinc-900 border-solid border-r border-t border-zinc-700'>
+        <div className='flex-2 w-80 h-full flex flex-col bg-zinc-900 border-solid border-r border-t border-zinc-700 overflow-y-scroll'>
             <ExplorerToolbar>
                 <IconButton
                     item={<FontAwesomeIcon icon={faPlus} />}
@@ -33,7 +35,7 @@ const CollectionExplorer = () => {
 
 
             <ExplorerList onClick={handleOnClick}>
-                { collections.map((collection: any) => 
+                { parent_collections.map((collection: any) => 
                     <CollectionExplorerListItem collection={collection} />
                 )}
 

@@ -1,23 +1,24 @@
-import { faAngleRight, faAngleDown, faFolderOpen } from '@fortawesome/free-solid-svg-icons';
+import React, { useState } from 'react';
+import { faAngleRight, faAngleDown, faFolderOpen, faEllipsis } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ExplorerListItem from 'ui/ExplorerListItem';
-import React, { useState } from 'react';
 import { useCollectionStore } from 'stores';
-import { getCollectionItem } from 'stores/collection/collection_items';
+import { getCollectionFromParentId } from 'stores/collection/collections';
+import IconButton from 'ui/IconButton';
 
 interface CollectionExplorerListItemType {
     collection: any
 }
 
 const CollectionExplorerListItem = ({ collection }: CollectionExplorerListItemType) => {
-    const collection_items = useCollectionStore((store) => store.collection_items);
+    const collections = useCollectionStore((store) => store.collections);
     const [isOpen, setIsOpen] = useState(false);
 
     const toggleSetIsOpen = () => {
         setIsOpen(!isOpen)
     }
 
-    const collection_item_list = getCollectionItem(collection_items, collection.id)
+    const collection_item_list = getCollectionFromParentId(collections, collection.id)
 
     return (
         <>
@@ -25,9 +26,10 @@ const CollectionExplorerListItem = ({ collection }: CollectionExplorerListItemTy
                 item_1={isOpen ? <FontAwesomeIcon icon={faAngleDown} /> : <FontAwesomeIcon icon={faAngleRight} />}
                 item_2={<FontAwesomeIcon icon={faFolderOpen} />}
                 item_3={collection.name}
+                item_4={<IconButton item={<FontAwesomeIcon icon={faEllipsis} />} />}
                 onClick={toggleSetIsOpen}
             />
-            { collection_item_list.map((collection_item) => (
+            { isOpen && collection_item_list.map((collection_item) => (
                 <ExplorerListItem
                     item_1={'aa'}
                     item_2={'aa'}
