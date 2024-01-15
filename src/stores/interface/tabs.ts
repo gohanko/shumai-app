@@ -38,23 +38,14 @@ const createTabsSlice: StateCreator<TabsSliceType> = (set: any) => ({
         produce((draft: any) => {
             const tabToDelete = draft.tabList.find((open_tab: TabType) => open_tab.id === tabId)
             if (!tabToDelete) {
-                return
+                throw new Error('Tab to delete not found.')
             }
-            
-            if (draft.activeTabID !== tabToDelete.id) {
-                draft.tabList = draft.tabList.filter((tab: TabType) => tab.id !== tabToDelete.id);
 
-                if (draft.tabHistory.includes(tabToDelete.id)) {
-                    draft.tabHistory = draft.tabHistory.filter((tabId: string) => tabId === tabToDelete.id)
-                }
-
-                return;
-            }
-            
-            draft.tabHistory.pop()
-            draft.activeTabID = draft.tabHistory[-1]
+            draft.tabHistory = draft.tabHistory.filter((tabId: string) => tabId !== tabToDelete.id)
+            draft.activeTabID = draft.tabHistory.length
+                ? draft.tabHistory.at(-1)
+                : draft.tabList.at(0).id
             draft.tabList = draft.tabList.filter((tab: TabType) => tab.id !== tabToDelete.id);
-            console.log(draft.tabHistory);
         })
     )
 })
