@@ -26,7 +26,7 @@ const CollectionExplorer = () => {
 
     return (
         <>
-        <ExplorerToolbar>
+            <ExplorerToolbar>
                 <IconButton
                     item={<FontAwesomeIcon icon={faPlus} />}
                     onClick={toggleCreationModal}    

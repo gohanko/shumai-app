@@ -13,7 +13,6 @@ interface CollectionExplorerListItemType {
 
 const CollectionExplorerListItem = ({ collection }: CollectionExplorerListItemType) => {
     const collections = useCollectionStore((store) => store.collections);
-    const open_tabs = useInterfaceStore((state) => state.open_tabs);
     const createTab = useInterfaceStore((state) => state.createTab);
 
 

@@ -9,14 +9,15 @@ interface TabType {
 
 interface TabsSliceType {
     open_tabs: Array<TabType>,
-    selected_tab: string,
+    selected_tab_id: string,
     createTab: any,
+    selectTab: any,
     deleteTab: any,
 }
 
 const createOpenTabsSlice: StateCreator<TabsSliceType> = (set: any) => ({
     open_tabs: [],
-    selected_tab: '',
+    selected_tab_id: '',
     createTab: (collection_id: string) => set(
         produce((draft: any) => {
             draft.open_tabs.push({
@@ -27,12 +28,18 @@ const createOpenTabsSlice: StateCreator<TabsSliceType> = (set: any) => ({
     ),
     selectTab: (id: string) => set(
         produce((draft: any) => {
-            draft.selected_tab = id
+            draft.selected_tab_id = id
         })
     ),
     deleteTab: (id: string) => set(
         produce((draft: any) => {
-            draft.open_tabs = draft.open_tabs.filter((open_tab: TabType) => open_tab.id !== id)
+            const to_delete_index = draft.open_tabs.findIndex((open_tab: TabType) => open_tab.id === id)
+
+            if (to_delete_index < -1) {
+                return
+            }
+
+            draft.open_tabs.splice(to_delete_index, 1)
         })
     )
 })

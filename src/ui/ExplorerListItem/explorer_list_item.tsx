@@ -26,11 +26,9 @@ const ExplorerListItem = ({ item_1, item_2, item_3, item_4, onClick }: ExplorerL
 
         </div>
 
-        { item_4 &&
-            <div className="flex-initial flex items-center text-zinc-500">
-                {item_4}
-            </div>
-        }
+        <div className="w-10 flex-initial flex items-center text-zinc-500">
+            {item_4}
+        </div>
     </div>
 )
 

@@ -62,6 +62,10 @@ const createCollectionsSlice: StateCreator<CollectionsSliceType> = (set: any) =>
     )
 })
 
+const getCollectionFromId = (collections: Array<CollectionType>, id: string) => {
+    return collections.filter((collection) => collection.id === id)[0]
+}
+
 const getCollectionFromParentId = (collections: Array<CollectionType>, id: string) => {
     return collections.filter((collection) => collection.parent_id === id)
 }
@@ -73,5 +77,6 @@ export type {
 
 export {
     createCollectionsSlice,
+    getCollectionFromId,
     getCollectionFromParentId
 }
