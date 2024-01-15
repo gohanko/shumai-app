@@ -31,7 +31,10 @@ const CollectionExplorerListItem = ({ collection }: CollectionExplorerListItemTy
                 item_2={<FontAwesomeIcon icon={faFolderOpen} />}
                 item_3={collection.name}
                 item_4={<IconButton item={<FontAwesomeIcon icon={faEllipsis} />} onClick={toggleIsOpenContextMenu} />}
-                onClick={toggleIsOpen}
+                onClick={(event: any) => {
+                    toggleIsOpen(event)
+                    createTab(collection.id)
+                }}
             />
             { isOpen && collection_item_list.map((collection_item) => (
                 <ExplorerListItem

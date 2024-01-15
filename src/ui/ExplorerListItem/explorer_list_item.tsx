@@ -23,7 +23,6 @@ const ExplorerListItem = ({ item_1, item_2, item_3, item_4, onClick }: ExplorerL
             <div className="flex-1 flex w-16 text-sm items-center text-white select-none">
                 <p className="truncate">{item_3}</p>
             </div>
-
         </div>
 
         <div className="w-10 flex-initial flex items-center text-zinc-500">

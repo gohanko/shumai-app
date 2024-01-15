@@ -33,10 +33,9 @@ const CollectionExplorer = () => {
                 />
             </ExplorerToolbar>
 
-
             <ExplorerList onClick={handleOnClick}>
                 { parent_collections.map((collection: any) => 
-                    <CollectionExplorerListItem collection={collection} />
+                    <CollectionExplorerListItem key={collection.id} collection={collection} />
                 )}
 
                 { isAddNewCollection &&

@@ -2,7 +2,7 @@ import { create } from 'zustand'
 import { devtools, persist } from 'zustand/middleware'
 import { CreationModalSliceType, createCreationModalSlice } from "./creation_modal";
 import { ExplorerSliceType, createExplorerSlice } from "./explorer";
-import { TabsSliceType, createOpenTabsSlice } from './open_tabs';
+import { TabsSliceType, createTabsSlice } from './tabs';
 
 const useInterfaceStore = create<CreationModalSliceType & ExplorerSliceType & TabsSliceType>()(
     devtools(
@@ -10,7 +10,7 @@ const useInterfaceStore = create<CreationModalSliceType & ExplorerSliceType & Ta
             (...set) => ({
                 ...createCreationModalSlice(...set),
                 ...createExplorerSlice(...set),
-                ...createOpenTabsSlice(...set),
+                ...createTabsSlice(...set),
             }),
             {
                 name: 'interface-storage'
