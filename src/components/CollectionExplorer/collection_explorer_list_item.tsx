@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { faAngleRight, faAngleDown, faFolderOpen, faEllipsis } from '@fortawesome/free-solid-svg-icons';
+import { faAngleRight, faAngleDown, faFolderOpen, faEllipsis, faFileCsv } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ExplorerListItem from 'ui/ExplorerListItem';
 import { useCollectionStore } from 'stores';
 import { getCollectionFromParentId } from 'stores/collection/collections';
 import IconButton from 'ui/IconButton';
-import ContextMenu from 'ui/ContextMenu';
+import ExplorerListItemLine from 'ui/ExplorerListItemLine';
 
 interface CollectionExplorerListItemType {
     collection: any
@@ -24,18 +24,6 @@ const CollectionExplorerListItem = ({ collection }: CollectionExplorerListItemTy
 
     const collection_item_list = getCollectionFromParentId(collections, collection.id)
 
-    const context_menu_items = [
-        {
-            label: 'Rename',
-            help: 'CTRL + E'
-        },
-        {
-            label: 'Delete',
-            className: 'text-red-500',
-            help: 'DEL'
-        }
-    ]
-
     return (
         <>
             <ExplorerListItem
@@ -47,8 +35,8 @@ const CollectionExplorerListItem = ({ collection }: CollectionExplorerListItemTy
             />
             { isOpen && collection_item_list.map((collection_item) => (
                 <ExplorerListItem
-                    item_1={'aa'}
-                    item_2={'aa'}
+                    item_1={<ExplorerListItemLine />}
+                    item_2={<FontAwesomeIcon icon={faFileCsv} />}
                     item_3={collection_item.name}
                 />
             ))}
