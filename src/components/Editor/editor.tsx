@@ -17,7 +17,7 @@ const Tab = ({ tab_id, label, isActive, onClick }: TabProp) => {
 
     return (
         <div
-            className={"w-40 h-10 pl-2 flex-none flex bg-zinc-900 items-center border-solid border-r border-r-zinc-700 " + (isActive ? "border-t-2 border-t-green-500": "")}
+            className={"w-40 h-10 pl-2 flex-none flex bg-zinc-900 items-center border-solid border-r border-r-zinc-700 cursor-pointer " + (isActive ? "border-t-2 border-t-green-500": "")}
             onClick={onClick}
         >
             <p 
