@@ -1,5 +1,5 @@
-import DataPlugin from "./data_plugin";
+import DataLoaderPlugin from "./data_loader_plugin";
 
 export {
-    DataPlugin
+    DataLoaderPlugin
 }
