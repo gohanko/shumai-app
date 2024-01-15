@@ -22,10 +22,14 @@ const createTabsSlice: StateCreator<TabsSliceType> = (set: any) => ({
     activeTabID: '',
     createTab: (collectionId: string) => set(
         produce((draft: any) => {
-            draft.tabList.push({
+            const newTab = {
                 id: uuidv4(),
                 collectionId: collectionId
-            })
+            }
+
+            draft.tabList.unshift(newTab)
+            draft.activeTabID = newTab.id
+            draft.tabHistory.push(newTab.id)
         })
     ),
     selectTab: (tabId: string) => set(
