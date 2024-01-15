@@ -25,9 +25,9 @@ const CollectionExplorerListInput = () => {
 
     return (
         <ExplorerListItem 
-            item_1={<FontAwesomeIcon icon={faAngleRight} />}
-            item_2={<FontAwesomeIcon icon={faFolderOpen} />}
-            item_3={<InputField onKeyDown={handleOnEnter}/>}
+            navigationIcon={<FontAwesomeIcon icon={faAngleRight} />}
+            labelItem1={<FontAwesomeIcon icon={faFolderOpen} />}
+            labelItem2={<InputField onKeyDown={handleOnEnter}/>}
         />
     )
 }

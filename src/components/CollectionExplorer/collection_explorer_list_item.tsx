@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { faAngleRight, faAngleDown, faFolderOpen, faEllipsis, faFileCsv } from '@fortawesome/free-solid-svg-icons';
+import { faAngleRight, faAngleDown, faFolderOpen, faFolderClosed, faEllipsis, faFileCsv } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ExplorerListItem from 'ui/ExplorerListItem';
 import { useCollectionStore, useInterfaceStore } from 'stores';
@@ -27,21 +27,19 @@ const CollectionExplorerListItem = ({ collection }: CollectionExplorerListItemTy
     return (
         <>
             <ExplorerListItem
-                item_1={isOpen ? <FontAwesomeIcon icon={faAngleDown} /> : <FontAwesomeIcon icon={faAngleRight} />}
-                item_2={<FontAwesomeIcon icon={faFolderOpen} />}
-                item_3={collection.name}
-                item_4={<IconButton item={<FontAwesomeIcon icon={faEllipsis} />} onClick={toggleIsOpenContextMenu} />}
-                onClick={(event: any) => {
-                    toggleIsOpen(event)
-                    createTab(collection.id)
-                }}
+                navigationIcon={isOpen ? <FontAwesomeIcon icon={faAngleDown} /> : <FontAwesomeIcon icon={faAngleRight} />}
+                navigationIconOnClick={(event: any) => toggleIsOpen(event)}
+                labelItem1={isOpen ? <FontAwesomeIcon icon={faFolderOpen} /> : <FontAwesomeIcon icon={faFolderClosed} />}
+                labelItem2={collection.name}
+                labelOnClick={() => createTab(collection.id)}
+                optionIcon={<IconButton item={<FontAwesomeIcon icon={faEllipsis} />} onClick={toggleIsOpenContextMenu} />}
             />
             { isOpen && collection_item_list.map((collection_item) => (
                 <ExplorerListItem
-                    item_1={<ExplorerListItemLine />}
-                    item_2={<FontAwesomeIcon icon={faFileCsv} />}
-                    item_3={collection_item.name}
-                    onClick={() => createTab(collection_item.id)}
+                    navigationIcon={<ExplorerListItemLine />}
+                    labelItem1={<FontAwesomeIcon icon={faFileCsv} />}
+                    labelItem2={collection_item.name}
+                    labelOnClick={() => createTab(collection_item.id)}
                 />
             ))}
         </>
