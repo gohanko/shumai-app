@@ -5,6 +5,7 @@ import ExplorerListItem from 'ui/ExplorerListItem';
 import { useCollectionStore } from 'stores';
 import { getCollectionFromParentId } from 'stores/collection/collections';
 import IconButton from 'ui/IconButton';
+import ContextMenu from 'ui/ContextMenu';
 
 interface CollectionExplorerListItemType {
     collection: any
@@ -13,12 +14,27 @@ interface CollectionExplorerListItemType {
 const CollectionExplorerListItem = ({ collection }: CollectionExplorerListItemType) => {
     const collections = useCollectionStore((store) => store.collections);
     const [isOpen, setIsOpen] = useState(false);
+    const [isOpenContextMenu, setIsOpenContextMenu] = useState(false);
 
-    const toggleSetIsOpen = () => {
+    const toggleIsOpen = (event: any) => {
         setIsOpen(!isOpen)
     }
+    
+    const toggleIsOpenContextMenu = () => setIsOpenContextMenu(!isOpenContextMenu);
 
     const collection_item_list = getCollectionFromParentId(collections, collection.id)
+
+    const context_menu_items = [
+        {
+            label: 'Rename',
+            help: 'CTRL + E'
+        },
+        {
+            label: 'Delete',
+            className: 'text-red-500',
+            help: 'DEL'
+        }
+    ]
 
     return (
         <>
@@ -26,8 +42,8 @@ const CollectionExplorerListItem = ({ collection }: CollectionExplorerListItemTy
                 item_1={isOpen ? <FontAwesomeIcon icon={faAngleDown} /> : <FontAwesomeIcon icon={faAngleRight} />}
                 item_2={<FontAwesomeIcon icon={faFolderOpen} />}
                 item_3={collection.name}
-                item_4={<IconButton item={<FontAwesomeIcon icon={faEllipsis} />} />}
-                onClick={toggleSetIsOpen}
+                item_4={<IconButton item={<FontAwesomeIcon icon={faEllipsis} />} onClick={toggleIsOpenContextMenu} />}
+                onClick={toggleIsOpen}
             />
             { isOpen && collection_item_list.map((collection_item) => (
                 <ExplorerListItem
