@@ -1,5 +1,5 @@
 import path from "path";
-import requireModule from 'shared/require_module';
+import requireModule from '../../utils/require_module';
 
 interface IPlugin {
     name: string,
@@ -22,7 +22,7 @@ class PluginManager {
     }
 
     _addPlugin(plugin: IPlugin, packageContents: any) {
-        this.pluginList.set(plugin.name, packageContents)
+        this.pluginList.set(plugin.name, { ...plugin, instance: packageContents })
     }
         
     registerPlugin(plugin: IPlugin) {
@@ -45,14 +45,18 @@ class PluginManager {
         }
     }
 
-    loadPlugin<T>(name: string) {
+    loadPlugin<T>(name: string): T {
         const plugin = this.pluginList.get(name);
         if (!plugin) {
-            throw new Error(`Cannot find plugin ${name}`);
+          throw new Error(`Cannot find plugin ${name}`);
         }
-
+        
         plugin.instance.default.prototype.options = plugin.options;
         return Object.create(plugin?.instance.default.prototype) as T;
+    }
+
+    listPlugin() {
+        return this.pluginList;
     }
 }
 

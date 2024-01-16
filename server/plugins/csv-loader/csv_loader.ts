@@ -1,20 +1,9 @@
 import path from "path";
 import fs from 'fs';
 import xlsx from 'xlsx';
-import { DataLoaderPlugin } from "plugin/contract";
-import { faFileCsv } from "@fortawesome/free-solid-svg-icons";
+import { DataLoaderPlugin } from "../../src/plugin/contract";
 
 class CSVLoader extends DataLoaderPlugin {
-    private label: string;
-    private icon: any
-    
-    constructor() {
-        super();
-
-        this.label = 'CSV Loader'
-        this.icon = faFileCsv
-    }
-
     isFileFormatSupported(filename: string) {
         const extension = path.extname(filename);
         return extension === '.csv';
@@ -33,20 +22,18 @@ class CSVLoader extends DataLoaderPlugin {
     }
 
     getLabel() {
-        return this.label
+        return 'CSV Loader'
     }
 
-    getIcon() {
-        return this.icon
-    }
-
-    getLoader(url: any) {
-        if (!this.isFileFormatSupported(url)) {
-            throw new Error('File format not supported.')
+    getLoader() {
+        return (uri: string) => {
+            if (!this.isFileFormatSupported(uri)) {
+                throw new Error('File format not supported.')
+            }
+    
+            let parsedData: any[] = this.readCSVFile(uri);
+            return parsedData;
         }
-
-        let parsedData: any[] = this.readCSVFile(url);
-        return parsedData;
     }
 }
 

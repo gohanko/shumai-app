@@ -1,7 +1,6 @@
 abstract class DataLoaderPlugin {
     abstract getLabel(): any;
-    abstract getIcon(): any;
-    abstract getLoader(param: any): any;
+    abstract getLoader(): any;
 }
 
 export default DataLoaderPlugin;
