@@ -3,7 +3,7 @@ import IconButton from "ui/IconButton";
 import { faXmark, faFolderOpen, faCubes, IconDefinition } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useInterfaceStore } from "stores";
-import { InterfaceStoreType } from "stores/interface/interface";
+import { InterfaceStoreType } from "stores/interface";
 
 type CreationModalItemProps = {
     icon: IconDefinition,

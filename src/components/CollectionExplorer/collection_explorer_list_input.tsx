@@ -4,8 +4,8 @@ import { faAngleRight, faFolderOpen } from "@fortawesome/free-solid-svg-icons";
 import { useCollectionStore, useInterfaceStore } from "stores";
 import ExplorerListItem from "ui/ExplorerListItem";
 import InputField from "ui/InputField";
-import { CollectionStoreType } from "stores/collection/collection_store";
-import { InterfaceStoreType } from "stores/interface/interface";
+import { CollectionStoreType } from "stores/collection";
+import { InterfaceStoreType } from "stores/interface";
 
 const CollectionExplorerListInput = () => {
     const createCollection = useCollectionStore((state: CollectionStoreType) => state.createCollection);

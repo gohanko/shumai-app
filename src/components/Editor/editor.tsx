@@ -62,42 +62,54 @@ const Editor = () => {
     const activeTabID = useInterfaceStore((state) => state.activeTabID);
     const selectTab = useInterfaceStore((state) => state.selectTab);
 
-    const selectedTab = tabList.find((tab) => tab.id === activeTabID)
-    let selected_collection
-    if (selectedTab) {
-        selected_collection = getCollectionFromId(collections, selectedTab.collectionId)
+    const generateTabListElements = () => {
+        const tabListElements = tabList.map((tab) => {
+            const collection = getCollectionFromId(collections, tab.collectionId)
+            if (!collection) {
+                return <></>
+            }
+
+            const tabElement = (
+                <Tab
+                    key={tab.id}
+                    tabId={tab.id}
+                    label={collection.name}
+                    isActive={tab.id === activeTabID}
+                    onClick={ (event: React.MouseEvent) => {
+                        event.preventDefault();
+                
+                        if (event.target === event.currentTarget) {
+                            selectTab(tab.id);
+                        }
+                    }}
+                />
+            )
+            
+            return tabElement
+        })
+
+        return tabListElements;
     }
+
+    const getActiveTabContent = () => {
+        const selectedTab = tabList.find((tab) => tab.id === activeTabID)
+        if (!selectedTab) return null
+
+        return getCollectionFromId(collections, selectedTab.collectionId)
+    }
+
+    const tabListElements = generateTabListElements();
+    const activeTabContent = getActiveTabContent()
 
     return (
         <div className='w-full flex-1 flex flex-col bg-zinc-900 border-solid border-t border-zinc-700'>
             <TabList>
-                { tabList.map((tab) => {
-                    const collection = getCollectionFromId(collections, tab.collectionId)
-                    if (!collection) {
-                        return;
-                    }
-
-                    return (
-                        <Tab
-                            key={tab.id}
-                            tabId={tab.id}
-                            label={collection.name}
-                            isActive={tab.id === activeTabID}
-                            onClick={ (event: React.MouseEvent) => {
-                                event.preventDefault();
-                        
-                                if (event.target === event.currentTarget) {
-                                    selectTab(tab.id);
-                                }
-                            }}
-                        />
-                    )
-                })}
+                { tabListElements }
             </TabList>
 
             <div className="w-full h-full border-solid border-t border-zinc-700">
                 <TabPanel>
-                    {selected_collection && selected_collection.name}
+                    { activeTabContent && activeTabContent.name }
                 </TabPanel>
             </div>
         </div>

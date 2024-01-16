@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ExplorerListItem from 'ui/ExplorerListItem';
 import { useInterfaceStore } from 'stores';
 import IconButton from 'ui/IconButton';
-import { CollectionType } from 'stores/collection/collections';
+import { CollectionType } from 'stores/collection';
 
 type CollectionExplorerListItemProps  = {
     collections: Array<CollectionType>

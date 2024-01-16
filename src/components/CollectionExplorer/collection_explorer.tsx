@@ -7,8 +7,8 @@ import IconButton from "ui/IconButton";
 import ExplorerList from "ui/ExplorerList";
 import CollectionExplorerListItem from "components/CollectionExplorer/collection_explorer_list_item";
 import CollectionExplorerListInput from "components/CollectionExplorer/collection_explorer_list_input";
-import { CollectionStoreType } from "stores/collection/collection_store";
-import { InterfaceStoreType } from "stores/interface/interface";
+import { CollectionStoreType } from "stores/collection";
+import { InterfaceStoreType } from "stores/interface";
 
 const CollectionExplorer = () => {
     const toggleCreationModal = useInterfaceStore((state: InterfaceStoreType) => state.toggleCreationModal)
