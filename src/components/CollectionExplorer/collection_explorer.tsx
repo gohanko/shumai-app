@@ -22,8 +22,6 @@ const CollectionExplorer = () => {
         }
     }
 
-    const parent_collections = collections.filter((collection: any) => !collection.parent_id)
-
     return (
         <>
             <ExplorerToolbar>
@@ -34,13 +32,8 @@ const CollectionExplorer = () => {
             </ExplorerToolbar>
 
             <ExplorerList onClick={handleOnClick}>
-                { parent_collections.map((collection: any) => 
-                    <CollectionExplorerListItem key={collection.id} collection={collection} />
-                )}
-
-                { isAddNewCollection &&
-                    <CollectionExplorerListInput /> 
-                }
+                <CollectionExplorerListItem collections={collections} />
+                { isAddNewCollection && <CollectionExplorerListInput /> }
             </ExplorerList>
         </>
     )

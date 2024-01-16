@@ -67,23 +67,26 @@ const ExplorerListItem = ({
     labelOnClick,
     optionIcon,
     optionIconOnClick
-}: ExplorerListItemType) => (
-    <div className="w-80 h-9 pl-4 gap-2.5 flex hover:bg-zinc-800 cursor-pointer">
-        <ExplorerListItemNavigationIcon
-            icon={navigationIcon}
-            onClick={navigationIconOnClick}
-        />
-        <ExplorerListItemLabel
-            item_1={labelItem1}
-            item_2={labelItem2}
-            onClick={labelOnClick}
-        />
-        <ExplorerListItemOption
-            icon={optionIcon}
-            onClick={optionIconOnClick}
-        />
-    </div>
-)
-
+}: ExplorerListItemType) => {
+    
+    
+    return (
+        <div className="w-80 h-9 pl-4 gap-2.5 flex hover:bg-zinc-800 cursor-pointer">
+            <ExplorerListItemNavigationIcon
+                icon={navigationIcon}
+                onClick={navigationIconOnClick}
+            />
+            <ExplorerListItemLabel
+                item_1={labelItem1}
+                item_2={labelItem2}
+                onClick={labelOnClick}
+            />
+            <ExplorerListItemOption
+                icon={optionIcon}
+                onClick={optionIconOnClick}
+            />
+        </div>
+    )
+}
 
 export default ExplorerListItem;

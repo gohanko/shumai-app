@@ -7,7 +7,7 @@ interface CollectionType {
     name: string,
     input?: string,
     category?: number,
-    parent_id?: string,
+    children: Array<CollectionType>
 }
 
 interface CollectionsSliceType {
@@ -27,19 +27,24 @@ const createCollectionsSlice: StateCreator<CollectionsSliceType> = (set: any) =>
                 draft.collections.push({
                     id: default_collection_id,
                     name: 'Default Collection',
+                    children: [],
                 })
             }
         })
     ),
-    createCollection: (name: string, input: string, category: number, parent_id: string) => set(
+    createCollection: (name: string, input: string, category: number, parent: CollectionType) => set(
         produce((draft: any) => {
-            draft.collections.push({
+            const newCollection = {
                 id: uuidv4(),
                 name: name,
                 input: input,
                 category: category,
-                parent_id: parent_id,
-            })
+                children: []
+            }
+            
+            parent
+                ? parent.children.push(newCollection)
+                : draft.collections.push(newCollection)
         })
     ),
     updateCollection: (new_collection: CollectionType) => set(
@@ -52,7 +57,7 @@ const createCollectionsSlice: StateCreator<CollectionsSliceType> = (set: any) =>
             collection.name = new_collection.name
             collection.input = new_collection.input
             collection.category = new_collection.category
-            collection.parent_id = new_collection.parent_id
+            collection.children = new_collection.children
         })
     ),
     deleteCollection: (id: string) => set(
@@ -63,11 +68,7 @@ const createCollectionsSlice: StateCreator<CollectionsSliceType> = (set: any) =>
 })
 
 const getCollectionFromId = (collections: Array<CollectionType>, id: string) => {
-    return collections.filter((collection) => collection.id === id)[0]
-}
-
-const getCollectionFromParentId = (collections: Array<CollectionType>, id: string) => {
-    return collections.filter((collection) => collection.parent_id === id)
+    return collections.find((collection) => collection.id === id)
 }
 
 export type {
@@ -78,5 +79,4 @@ export type {
 export {
     createCollectionsSlice,
     getCollectionFromId,
-    getCollectionFromParentId
 }

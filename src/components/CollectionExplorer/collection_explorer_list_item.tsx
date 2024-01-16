@@ -1,46 +1,44 @@
 import React, { useState } from 'react';
-import { faAngleRight, faAngleDown, faFolderOpen, faFolderClosed, faEllipsis, faFileCsv } from '@fortawesome/free-solid-svg-icons';
+import { faAngleRight, faAngleDown, faFolderOpen, faFolderClosed, faEllipsis } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ExplorerListItem from 'ui/ExplorerListItem';
-import { useCollectionStore, useInterfaceStore } from 'stores';
-import { getCollectionFromParentId } from 'stores/collection/collections';
+import { useInterfaceStore } from 'stores';
 import IconButton from 'ui/IconButton';
-import ExplorerListItemLine from 'ui/ExplorerListItemLine';
+import { CollectionType } from 'stores/collection/collections';
 
 interface CollectionExplorerListItemType {
-    collection: any
+    collections: Array<CollectionType>
 }
 
-const CollectionExplorerListItem = ({ collection }: CollectionExplorerListItemType) => {
-    const collections = useCollectionStore((store) => store.collections);
+const CollectionExplorerListItem = ({ collections }: CollectionExplorerListItemType) => {
     const createTab = useInterfaceStore((state) => state.createTab);
 
-
-    const [isOpen, setIsOpen] = useState(false);
-    const [isOpenContextMenu, setIsOpenContextMenu] = useState(false);
-
-    const collection_item_list = getCollectionFromParentId(collections, collection.id)
-
-    const toggleIsOpen = (event: any) => setIsOpen(!isOpen)    
-    const toggleIsOpenContextMenu = () => setIsOpenContextMenu(!isOpenContextMenu);
+    const [showNested, setShowNested] = useState<any>({});
+    const toggleNested = (id: string) => {
+        setShowNested({ ...showNested, [id]: !showNested[id] });
+    };
 
     return (
         <>
-            <ExplorerListItem
-                navigationIcon={isOpen ? <FontAwesomeIcon icon={faAngleDown} /> : <FontAwesomeIcon icon={faAngleRight} />}
-                navigationIconOnClick={(event: any) => toggleIsOpen(event)}
-                labelItem1={isOpen ? <FontAwesomeIcon icon={faFolderOpen} /> : <FontAwesomeIcon icon={faFolderClosed} />}
-                labelItem2={collection.name}
-                labelOnClick={() => createTab(collection.id)}
-                optionIcon={<IconButton item={<FontAwesomeIcon icon={faEllipsis} />} onClick={toggleIsOpenContextMenu} />}
-            />
-            { isOpen && collection_item_list.map((collection_item) => (
-                <ExplorerListItem
-                    navigationIcon={<ExplorerListItemLine />}
-                    labelItem1={<FontAwesomeIcon icon={faFileCsv} />}
-                    labelItem2={collection_item.name}
-                    labelOnClick={() => createTab(collection_item.id)}
-                />
+            { collections.map((collection: CollectionType) => (
+                <>
+                    <ExplorerListItem
+                        key={collection.id}
+                        navigationIcon={showNested[collection.id] ? <FontAwesomeIcon icon={faAngleDown} /> : <FontAwesomeIcon icon={faAngleRight} />}
+                        navigationIconOnClick={() => toggleNested(collection.id)}
+                        labelItem1={showNested[collection.id] ? <FontAwesomeIcon icon={faFolderOpen} /> : <FontAwesomeIcon icon={faFolderClosed} />}
+                        labelItem2={collection.name}
+                        labelOnClick={() => createTab(collection.id)}
+                        optionIcon={<IconButton item={<FontAwesomeIcon icon={faEllipsis} />} />}
+                    />
+
+                    { showNested[collection.id] && collection.children?.length > 0 &&
+                        <CollectionExplorerListItem
+                            key={collection.id}
+                            collections={collection.children}
+                        />
+                    }
+                </>
             ))}
         </>
     )
