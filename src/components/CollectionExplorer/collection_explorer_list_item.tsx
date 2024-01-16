@@ -6,11 +6,11 @@ import { useInterfaceStore } from 'stores';
 import IconButton from 'ui/IconButton';
 import { CollectionType } from 'stores/collection/collections';
 
-interface CollectionExplorerListItemType {
+type CollectionExplorerListItemProps  = {
     collections: Array<CollectionType>
 }
 
-const CollectionExplorerListItem = ({ collections }: CollectionExplorerListItemType) => {
+const CollectionExplorerListItem = ({ collections }: CollectionExplorerListItemProps) => {
     const createTab = useInterfaceStore((state) => state.createTab);
 
     const [showNested, setShowNested] = useState<any>({});
@@ -26,10 +26,10 @@ const CollectionExplorerListItem = ({ collections }: CollectionExplorerListItemT
                         key={collection.id}
                         navigationIcon={showNested[collection.id] ? <FontAwesomeIcon icon={faAngleDown} /> : <FontAwesomeIcon icon={faAngleRight} />}
                         navigationIconOnClick={() => toggleNested(collection.id)}
-                        labelItem1={showNested[collection.id] ? <FontAwesomeIcon icon={faFolderOpen} /> : <FontAwesomeIcon icon={faFolderClosed} />}
-                        labelItem2={collection.name}
+                        labelIcon={showNested[collection.id] ? <FontAwesomeIcon icon={faFolderOpen} /> : <FontAwesomeIcon icon={faFolderClosed} />}
+                        labelText={collection.name}
                         labelOnClick={() => createTab(collection.id)}
-                        optionIcon={<IconButton item={<FontAwesomeIcon icon={faEllipsis} />} />}
+                        optionIcon={<IconButton icon={<FontAwesomeIcon icon={faEllipsis} />} />}
                     />
 
                     { showNested[collection.id] && collection.children?.length > 0 &&

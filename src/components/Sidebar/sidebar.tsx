@@ -8,19 +8,19 @@ const Sidebar = () => (
     <div className="w-10 h-full flex flex-col bg-zinc-900 border-solid border-r border-t border-zinc-700">
         <div className="flex-1">
             <NavLink to={'workspace/'}>
-                { ({ isActive }: any) => (<IconButton item={<FontAwesomeIcon icon={faCubes} className="w-5 h-5"/>} isActive={isActive} />)}
+                { ({ isActive }) => <IconButton icon={<FontAwesomeIcon icon={faCubes} className="w-5 h-5"/>} isActive={isActive} />}
             </NavLink>
             <NavLink to={'variables/'}>
-                { ({ isActive }: any) => (<IconButton item={<FontAwesomeIcon icon={faLaptopCode} className="w-5 h-5" />} isActive={isActive} />)}
+                { ({ isActive }) => <IconButton icon={<FontAwesomeIcon icon={faLaptopCode} className="w-5 h-5" />} isActive={isActive} />}
             </NavLink>
 
             <NavLink to={'plugins/'}>
-                { ({ isActive }: any) => (<IconButton item={<FontAwesomeIcon icon={faPuzzlePiece} className="w-5 h-5" />} isActive={isActive} />)}
+                { ({ isActive }) => <IconButton icon={<FontAwesomeIcon icon={faPuzzlePiece} className="w-5 h-5" />} isActive={isActive} />}
             </NavLink>
         </div>
         <div className="flex-1 flex items-end">
             <NavLink to={'settings/'}>
-            { ({ isActive }: any) => (<IconButton item={<FontAwesomeIcon icon={faGear} className="w-5 h-5" />} isActive={isActive} />)}
+                { ({ isActive }) => <IconButton icon={<FontAwesomeIcon icon={faGear} className="w-5 h-5" />} isActive={isActive} />}
             </NavLink>
         </div>
     </div>

@@ -22,7 +22,8 @@ class CSVLoader extends DataLoaderPlugin {
     }
 
     getLabel() {
-        return 'CSV Loader'
+        const label: string = "CSVLoader"
+        return label
     }
 
     getLoader() {
@@ -31,7 +32,7 @@ class CSVLoader extends DataLoaderPlugin {
                 throw new Error('File format not supported.')
             }
     
-            let parsedData: any[] = this.readCSVFile(uri);
+            let parsedData: object[] = this.readCSVFile(uri);
             return parsedData;
         }
     }

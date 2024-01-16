@@ -1,16 +1,21 @@
 import React from "react";
 import IconButton from "ui/IconButton";
-import { faXmark, faFolderOpen, faCubes } from "@fortawesome/free-solid-svg-icons";
+import { faXmark, faFolderOpen, faCubes, IconDefinition } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useInterfaceStore } from "stores";
+import { InterfaceStoreType } from "stores/interface/interface";
 
-interface CreationModalItemProps {
-    icon: any,
+type CreationModalItemProps = {
+    icon: IconDefinition,
     label: string
-    onClick?: any,
+    onClick?: () => void,
 }
 
-const CreationModalItem = ({ icon, label, onClick }: CreationModalItemProps) => (
+const CreationModalItem = ({
+    icon,
+    label,
+    onClick
+}: CreationModalItemProps) => (
     <div
         className="w-32 h-32 text-zinc-500 flex flex-col gap-2 items-center justify-center hover:bg-zinc-800 hover:border-solid hover:border hover:border-zinc-800 hover:cursor-pointer rounded-md"
         onClick={onClick}
@@ -21,9 +26,9 @@ const CreationModalItem = ({ icon, label, onClick }: CreationModalItemProps) => 
 )
 
 const CreationModal = () => {
-    const closeCreationModal = useInterfaceStore((state: any) => state.closeCreationModal)
-    const isCreationModalOpen = useInterfaceStore((state: any) => state.isCreationModalOpen)
-    const setIsAddNewCollection = useInterfaceStore((state: any) => state.setIsAddNewCollection)
+    const closeCreationModal = useInterfaceStore((state: InterfaceStoreType) => state.closeCreationModal)
+    const isCreationModalOpen = useInterfaceStore((state: InterfaceStoreType) => state.isCreationModalOpen)
+    const setIsAddNewCollection = useInterfaceStore((state: InterfaceStoreType) => state.setIsAddNewCollection)
 
     return (
         <>
@@ -39,7 +44,7 @@ const CreationModal = () => {
                         <div className="flex-1 items-start"></div>
                         <div className="flex-1 flex justify-end">
                             <IconButton
-                                item={<FontAwesomeIcon icon={faXmark} />}
+                                icon={<FontAwesomeIcon icon={faXmark} />}
                                 onClick={closeCreationModal}
                             />
                         </div>

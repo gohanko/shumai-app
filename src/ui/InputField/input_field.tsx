@@ -1,7 +1,7 @@
 import React from "react"
 
-interface InputFieldType {
-    onKeyDown: any
+type InputFieldType =  {
+    onKeyDown: (event: React.KeyboardEvent<HTMLInputElement>) => void
 }
 
 const InputField = ({ onKeyDown }: InputFieldType) => (

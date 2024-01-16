@@ -1,8 +1,8 @@
 import React from "react"
 
-interface ExplorerListItemNavigationIconType {
-    icon: any,
-    onClick?: any
+type ExplorerListItemNavigationIconType = {
+    icon: JSX.Element,
+    onClick?: () => void
 }
 
 const ExplorerListItemNavigationIcon = ({ icon, onClick }: ExplorerListItemNavigationIconType) => (
@@ -14,30 +14,30 @@ const ExplorerListItemNavigationIcon = ({ icon, onClick }: ExplorerListItemNavig
     </div>
 );
 
-interface ExplorerListItemLabelType {
-    item_1: any,
-    item_2: any,
-    onClick?: any
+type ExplorerListItemLabelType = {
+    icon: JSX.Element,
+    text: string | JSX.Element,
+    onClick?: () => void
 }
 
-const ExplorerListItemLabel = ({ item_1, item_2, onClick }: ExplorerListItemLabelType) => (
+const ExplorerListItemLabel = ({ icon, text, onClick }: ExplorerListItemLabelType) => (
     <div
         className="flex-1 h-9 gap-2.5 flex"
         onClick={onClick}
     >
         <div className="flex-initial flex w-5 items-center text-zinc-500">
-            {item_1}
+            {icon}
         </div>
 
         <div className="flex-1 flex w-16 text-sm items-center text-white select-none">
-            <p className="truncate">{item_2}</p>
+            <p className="truncate">{text}</p>
         </div>
     </div>
 )
 
-interface ExplorerListItemOptionType {
-    icon: any,
-    onClick?: any
+type ExplorerListItemOptionType = {
+    icon: JSX.Element,
+    onClick?: () => void
 }
 
 const ExplorerListItemOption = ({ icon, onClick }: ExplorerListItemOptionType) => (
@@ -49,44 +49,40 @@ const ExplorerListItemOption = ({ icon, onClick }: ExplorerListItemOptionType) =
     </div>
 )
 
-interface ExplorerListItemType {
-    navigationIcon: any,
-    navigationIconOnClick?: any,
-    labelItem1: any,
-    labelItem2: any,
-    labelOnClick?: any,
-    optionIcon?: any,
-    optionIconOnClick?: any,
+type ExplorerListItemType = {
+    navigationIcon: JSX.Element,
+    navigationIconOnClick?: () => void,
+    labelIcon: JSX.Element,
+    labelText: string | JSX.Element,
+    labelOnClick?: () => void,
+    optionIcon?: JSX.Element,
+    optionIconOnClick?: () => void,
 }
 
 const ExplorerListItem = ({
     navigationIcon,
     navigationIconOnClick,
-    labelItem1,
-    labelItem2,
+    labelIcon,
+    labelText,
     labelOnClick,
     optionIcon,
     optionIconOnClick
-}: ExplorerListItemType) => {
-    
-    
-    return (
-        <div className="w-80 h-9 pl-4 gap-2.5 flex hover:bg-zinc-800 cursor-pointer">
-            <ExplorerListItemNavigationIcon
-                icon={navigationIcon}
-                onClick={navigationIconOnClick}
-            />
-            <ExplorerListItemLabel
-                item_1={labelItem1}
-                item_2={labelItem2}
-                onClick={labelOnClick}
-            />
-            <ExplorerListItemOption
-                icon={optionIcon}
-                onClick={optionIconOnClick}
-            />
-        </div>
-    )
-}
+}: ExplorerListItemType) =>  (
+    <div className="w-80 h-9 pl-4 gap-2.5 flex hover:bg-zinc-800 cursor-pointer">
+        <ExplorerListItemNavigationIcon
+            icon={navigationIcon}
+            onClick={navigationIconOnClick}
+        />
+        <ExplorerListItemLabel
+            icon={labelIcon}
+            text={labelText}
+            onClick={labelOnClick}
+        />
+        <ExplorerListItemOption
+            icon={optionIcon || <div />}
+            onClick={optionIconOnClick}
+        />
+    </div>
+)
 
 export default ExplorerListItem;

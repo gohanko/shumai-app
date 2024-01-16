@@ -4,30 +4,32 @@ import { faAngleRight, faFolderOpen } from "@fortawesome/free-solid-svg-icons";
 import { useCollectionStore, useInterfaceStore } from "stores";
 import ExplorerListItem from "ui/ExplorerListItem";
 import InputField from "ui/InputField";
+import { CollectionStoreType } from "stores/collection/collection_store";
+import { InterfaceStoreType } from "stores/interface/interface";
 
 const CollectionExplorerListInput = () => {
-    const createCollection = useCollectionStore(store => store.createCollection);
-    const setIsAddNewCollection = useInterfaceStore((state: any) => state.setIsAddNewCollection)
+    const createCollection = useCollectionStore((state: CollectionStoreType) => state.createCollection);
+    const setIsAddNewCollection = useInterfaceStore((state: InterfaceStoreType) => state.setIsAddNewCollection)
 
-    const handleOnEnter = (event: any) => {
+    const handleOnEnter = (event: React.KeyboardEvent<HTMLInputElement>) => {
         if (event.key !== 'Enter') {
             return;
         }
 
-        const value = event.target.value;
+        const value = event.currentTarget.value;
         if (!value) {
             return;
         }
 
-        createCollection(event.target.value);
+        createCollection(value);
         setIsAddNewCollection(false);
     }
 
     return (
         <ExplorerListItem 
             navigationIcon={<FontAwesomeIcon icon={faAngleRight} />}
-            labelItem1={<FontAwesomeIcon icon={faFolderOpen} />}
-            labelItem2={<InputField onKeyDown={handleOnEnter}/>}
+            labelIcon={<FontAwesomeIcon icon={faFolderOpen} />}
+            labelText={<InputField onKeyDown={handleOnEnter}/>}
         />
     )
 }

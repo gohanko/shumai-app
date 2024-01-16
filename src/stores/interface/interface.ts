@@ -4,7 +4,9 @@ import { CreationModalSliceType, createCreationModalSlice } from "./creation_mod
 import { ExplorerSliceType, createExplorerSlice } from "./explorer";
 import { TabsSliceType, createTabsSlice } from './tabs';
 
-const useInterfaceStore = create<CreationModalSliceType & ExplorerSliceType & TabsSliceType>()(
+type InterfaceStoreType = CreationModalSliceType & ExplorerSliceType & TabsSliceType
+
+const useInterfaceStore = create<InterfaceStoreType>()(
     devtools(
         persist(
             (...set) => ({
@@ -18,5 +20,9 @@ const useInterfaceStore = create<CreationModalSliceType & ExplorerSliceType & Ta
         )
     )
 )
+
+export type {
+    InterfaceStoreType
+}
 
 export default useInterfaceStore;

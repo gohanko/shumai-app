@@ -5,8 +5,8 @@ import CreationModal from 'components/CreationModal';
 import Sidebar from 'components/Sidebar';
 import { Outlet } from 'react-router';
 
-interface AppLayoutType {
-    children?: any
+type AppLayoutType = {
+    children?: React.ReactNode
 }
 
 const AppLayout = ({ children }: AppLayoutType) => (

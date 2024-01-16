@@ -1,13 +1,13 @@
 import { StateCreator } from 'zustand'
 
-interface ExplorerSliceType {
+type ExplorerSliceType = {
     isAddNewCollection: boolean
-    setIsAddNewCollection: any,
+    setIsAddNewCollection: (value: boolean) => void,
 }
 
-const createExplorerSlice: StateCreator<ExplorerSliceType> = (set: any) => ({
+const createExplorerSlice: StateCreator<ExplorerSliceType> = (set) => ({
     isAddNewCollection: false,
-    setIsAddNewCollection: (value: boolean) => set((state: any) => ({ isAddNewCollection: value })),
+    setIsAddNewCollection: (value: boolean) => set(() => ({ isAddNewCollection: value })),
 })
 
 export type {

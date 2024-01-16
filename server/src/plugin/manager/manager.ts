@@ -1,12 +1,12 @@
 import path from "path";
 import requireModule from '../../utils/require_module';
 
-interface IPlugin {
+type IPlugin = {
     name: string,
     packageName: string,
     isRelative?: boolean,
     instance?: any;
-    options?: any;
+    options?: object;
 }
 
 class PluginManager {

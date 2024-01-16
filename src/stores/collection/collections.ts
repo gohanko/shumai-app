@@ -2,7 +2,7 @@ import { StateCreator } from 'zustand'
 import { v4 as uuidv4 } from 'uuid';
 import { produce } from 'immer';
 
-interface CollectionType {
+type CollectionType = {
     id: string,
     name: string,
     input?: string,
@@ -10,19 +10,20 @@ interface CollectionType {
     children: Array<CollectionType>
 }
 
-interface CollectionsSliceType {
+type CollectionsSliceType = {
     collections: CollectionType[],
-    initializeCollection: any,
-    createCollection: any,
-    deleteCollection: any,
+    initializeCollection: () => void,
+    createCollection: (name: string, input?: string, category?: number, parent?: CollectionType) => void,
+    updateCollection: (new_collection: CollectionType) => void,
+    deleteCollection: (id: string) => void,
 }
 
 const default_collection_id = 'default-collection'
 
-const createCollectionsSlice: StateCreator<CollectionsSliceType> = (set: any) => ({
+const createCollectionsSlice: StateCreator<CollectionsSliceType> = (set) => ({
     collections: [],
     initializeCollection: () => set(
-        produce((draft: any) => {
+        produce((draft: CollectionsSliceType) => {
             if (!draft.collections.length) {
                 draft.collections.push({
                     id: default_collection_id,
@@ -32,8 +33,8 @@ const createCollectionsSlice: StateCreator<CollectionsSliceType> = (set: any) =>
             }
         })
     ),
-    createCollection: (name: string, input: string, category: number, parent: CollectionType) => set(
-        produce((draft: any) => {
+    createCollection: (name: string, input?: string, category?: number, parent?: CollectionType) => set(
+        produce((draft: CollectionsSliceType) => {
             const newCollection = {
                 id: uuidv4(),
                 name: name,
@@ -48,7 +49,7 @@ const createCollectionsSlice: StateCreator<CollectionsSliceType> = (set: any) =>
         })
     ),
     updateCollection: (new_collection: CollectionType) => set(
-        produce((draft: any) => {
+        produce((draft: CollectionsSliceType) => {
             const collection = draft.collections.find((collection: CollectionType) => collection.id === new_collection.id);
             if (!collection) {
                 throw new Error('Collection does not exist.')
@@ -61,15 +62,16 @@ const createCollectionsSlice: StateCreator<CollectionsSliceType> = (set: any) =>
         })
     ),
     deleteCollection: (id: string) => set(
-        produce((draft: any) => {
+        produce((draft: CollectionsSliceType) => {
             draft.collections = draft.collections.filter((collection: CollectionType) => collection.id !== id)
         })
     )
 })
 
-const getCollectionFromId = (collections: Array<CollectionType>, id: string) => {
-    return collections.find((collection) => collection.id === id)
-}
+const getCollectionFromId = (
+    collections: Array<CollectionType>,
+    id: string
+) => collections.find((collection) => collection.id === id)
 
 export type {
     CollectionType,

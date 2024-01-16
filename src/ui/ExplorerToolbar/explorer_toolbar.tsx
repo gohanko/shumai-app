@@ -1,7 +1,7 @@
 import React from "react";
 
-interface ExplorerToolbarType {
-    children: any
+type ExplorerToolbarType = {
+    children: React.ReactNode
 }
 
 const ExplorerToolbar = ({ children }: ExplorerToolbarType) => (
@@ -9,6 +9,5 @@ const ExplorerToolbar = ({ children }: ExplorerToolbarType) => (
         { children }
     </div>
 )
-
 
 export default ExplorerToolbar;

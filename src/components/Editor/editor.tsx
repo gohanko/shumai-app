@@ -5,14 +5,14 @@ import IconButton from "ui/IconButton";
 import { useCollectionStore, useInterfaceStore } from "stores";
 import { getCollectionFromId } from "stores/collection/collections";
 
-interface TabProp {
-    tab_id: string,
+type TabProps = {
+    tabId: string,
     label: string,
     isActive?: boolean,
-    onClick?: any
+    onClick?: (event: React.MouseEvent) => void
 }
 
-const Tab = ({ tab_id, label, isActive, onClick }: TabProp) => {
+const Tab = ({ tabId, label, isActive, onClick }: TabProps) => {
     const deleteTab = useInterfaceStore(store => store.deleteTab)
 
     return (
@@ -27,18 +27,18 @@ const Tab = ({ tab_id, label, isActive, onClick }: TabProp) => {
                 { label }
             </p>
             <IconButton
-                item={<FontAwesomeIcon icon={faXmark} />}
-                onClick={() => deleteTab(tab_id)}
+                icon={<FontAwesomeIcon icon={faXmark} />}
+                onClick={() => deleteTab(tabId)}
             />
         </div>
     )
 }
 
-interface TabListProp {
-    children: any
+type TabListProps = {
+    children: React.ReactNode
 }
 
-const TabList = ({ children }: TabListProp) => (
+const TabList = ({ children }: TabListProps) => (
     <div className="flex-none grow min-w-0 h-10">
         <div className="grow w-0 min-w-full overflow-x-scroll flex">
             { children }
@@ -46,8 +46,8 @@ const TabList = ({ children }: TabListProp) => (
     </div>
 )
 
-interface TabPanelProps {
-    children?: any
+type TabPanelProps = {
+    children?: React.ReactNode
 }
 
 const TabPanel = ({ children }: TabPanelProps) => (
@@ -80,10 +80,10 @@ const Editor = () => {
                     return (
                         <Tab
                             key={tab.id}
-                            tab_id={tab.id}
+                            tabId={tab.id}
                             label={collection.name}
                             isActive={tab.id === activeTabID}
-                            onClick={ (event: any) => {
+                            onClick={ (event: React.MouseEvent) => {
                                 event.preventDefault();
                         
                                 if (event.target === event.currentTarget) {

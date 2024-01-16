@@ -3,7 +3,9 @@ import { devtools, persist } from 'zustand/middleware'
 import { immer } from "zustand/middleware/immer";
 import { CollectionsSliceType, createCollectionsSlice } from './collections';
 
-const useCollectionStore = create<CollectionsSliceType>()(
+type CollectionStoreType = CollectionsSliceType;
+
+const useCollectionStore = create<CollectionStoreType>()(
     devtools(
         immer(
             persist(
@@ -17,5 +19,9 @@ const useCollectionStore = create<CollectionsSliceType>()(
         )
     )
 )
+
+export type {
+    CollectionStoreType
+}
 
 export default useCollectionStore;

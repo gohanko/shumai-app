@@ -5,9 +5,9 @@ import IconButton from "ui/IconButton";
 
 const ToolbarNavigation = () => (
     <div className="flex-2 flex h-10">
-        <IconButton item={<FontAwesomeIcon icon={faBars} className="w-5 h-5" />} />
-        <IconButton item={<FontAwesomeIcon icon={faArrowLeft} className="w-5 h-5"/>} />
-        <IconButton item={<FontAwesomeIcon icon={faArrowRight} className="w-5 h-5"/>} />
+        <IconButton icon={<FontAwesomeIcon icon={faBars} className="w-5 h-5" />} />
+        <IconButton icon={<FontAwesomeIcon icon={faArrowLeft} className="w-5 h-5"/>} />
+        <IconButton icon={<FontAwesomeIcon icon={faArrowRight} className="w-5 h-5"/>} />
     </div>
 );
 
@@ -32,8 +32,8 @@ const ToolbarSearch = () => (
 
 const ToolbarNotificationAndAccount = () => (
     <div className="flex-2 flex h-10">
-        <IconButton item={<FontAwesomeIcon icon={faBell} className="w-5 h-5"/>} />
-        <IconButton item={<div className="w-6 h-6 bg-white rounded-full"></div>} />
+        <IconButton icon={<FontAwesomeIcon icon={faBell} className="w-5 h-5"/>} />
+        <IconButton icon={<div className="w-6 h-6 bg-white rounded-full"></div>} />
     </div>
 );
 
