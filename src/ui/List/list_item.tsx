@@ -1,11 +1,11 @@
 import React from "react"
 
-type ExplorerListItemNavigationIconType = {
+type ListItemNavigationIconType = {
     icon: JSX.Element,
     onClick?: () => void
 }
 
-const ExplorerListItemNavigationIcon = ({ icon, onClick }: ExplorerListItemNavigationIconType) => (
+const ListItemNavigationIcon = ({ icon, onClick }: ListItemNavigationIconType) => (
     <div
         className="w-5 flex-2 flex items-center text-zinc-500"
         onClick={onClick}
@@ -14,13 +14,13 @@ const ExplorerListItemNavigationIcon = ({ icon, onClick }: ExplorerListItemNavig
     </div>
 );
 
-type ExplorerListItemLabelType = {
+type ListItemLabelType = {
     icon: JSX.Element,
     text: string | JSX.Element,
     onClick?: () => void
 }
 
-const ExplorerListItemLabel = ({ icon, text, onClick }: ExplorerListItemLabelType) => (
+const ListItemLabel = ({ icon, text, onClick }: ListItemLabelType) => (
     <div
         className="flex-1 h-9 gap-2.5 flex"
         onClick={onClick}
@@ -35,12 +35,12 @@ const ExplorerListItemLabel = ({ icon, text, onClick }: ExplorerListItemLabelTyp
     </div>
 )
 
-type ExplorerListItemOptionType = {
+type ListItemOptionType = {
     icon: JSX.Element,
     onClick?: () => void
 }
 
-const ExplorerListItemOption = ({ icon, onClick }: ExplorerListItemOptionType) => (
+const ListItemOption = ({ icon, onClick }: ListItemOptionType) => (
     <div
         className="w-10 flex-initial flex items-center text-zinc-500"
         onClick={onClick}
@@ -49,7 +49,7 @@ const ExplorerListItemOption = ({ icon, onClick }: ExplorerListItemOptionType) =
     </div>
 )
 
-type ExplorerListItemType = {
+type ListItemType = {
     navigationIcon: JSX.Element,
     navigationIconOnClick?: () => void,
     labelIcon: JSX.Element,
@@ -59,7 +59,7 @@ type ExplorerListItemType = {
     optionIconOnClick?: () => void,
 }
 
-const ExplorerListItem = ({
+const ListItem = ({
     navigationIcon,
     navigationIconOnClick,
     labelIcon,
@@ -67,22 +67,22 @@ const ExplorerListItem = ({
     labelOnClick,
     optionIcon,
     optionIconOnClick
-}: ExplorerListItemType) =>  (
+}: ListItemType) =>  (
     <div className="w-80 h-9 pl-4 gap-2.5 flex hover:bg-zinc-800 cursor-pointer">
-        <ExplorerListItemNavigationIcon
+        <ListItemNavigationIcon
             icon={navigationIcon}
             onClick={navigationIconOnClick}
         />
-        <ExplorerListItemLabel
+        <ListItemLabel
             icon={labelIcon}
             text={labelText}
             onClick={labelOnClick}
         />
-        <ExplorerListItemOption
+        <ListItemOption
             icon={optionIcon || <div />}
             onClick={optionIconOnClick}
         />
     </div>
 )
 
-export default ExplorerListItem;
+export default ListItem;
