@@ -26,9 +26,11 @@ const CreationModalItem = ({
 )
 
 const CreationModal = () => {
-    const closeCreationModal = useInterfaceStore((state: InterfaceStoreType) => state.closeCreationModal)
-    const isCreationModalOpen = useInterfaceStore((state: InterfaceStoreType) => state.isCreationModalOpen)
-    const setIsAddNewCollection = useInterfaceStore((state: InterfaceStoreType) => state.setIsAddNewCollection)
+    const {
+        isCreationModalOpen,
+        closeCreationModal,
+        setIsAddNewCollection,
+    } = useInterfaceStore((state: InterfaceStoreType) => state);
 
     return (
         <>

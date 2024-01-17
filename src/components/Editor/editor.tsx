@@ -5,9 +5,11 @@ import { TabList, Tab, TabContent } from "ui/Tabbing";
 
 const Editor = () => {
     const collections = useCollectionStore((state) => state.collections);
-    const tabList = useInterfaceStore((state) => state.tabList);
-    const activeTabID = useInterfaceStore((state) => state.activeTabID);
-    const selectTab = useInterfaceStore((state) => state.selectTab);
+    const {
+        tabList,
+        activeTabID,
+        selectTab
+    } = useInterfaceStore((state) => state);
 
     const generateTabListElements = () => {
         const tabListElements = tabList.map((tab) => {

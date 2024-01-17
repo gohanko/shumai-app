@@ -8,13 +8,18 @@ import IconButton from "ui/IconButton";
 import ListBrowser from "ui/ListBrowser";
 
 const CollectionBrowser = () => {
-    const toggleCreationModal = useInterfaceStore((state: InterfaceStoreType) => state.toggleCreationModal)
-    const isAddNewCollection = useInterfaceStore((state: InterfaceStoreType) => state.isAddNewCollection)
-    const setIsAddNewCollection = useInterfaceStore((state: InterfaceStoreType) => state.setIsAddNewCollection)
-    const collections = useCollectionStore((state: CollectionStoreType) => state.collections)
-    const createCollection = useCollectionStore((state: CollectionStoreType) => state.createCollection);
-    const createTab = useInterfaceStore((state) => state.createTab);
-
+    const {
+        isAddNewCollection,
+        toggleCreationModal,
+        setIsAddNewCollection,
+        createTab,
+    } = useInterfaceStore((state: InterfaceStoreType) => state);
+    
+    const {
+        collections,
+        createCollection,
+    } = useCollectionStore((state: CollectionStoreType) => state);
+    
     const onClickList = (event: React.MouseEvent) => {
         event.preventDefault();
 
