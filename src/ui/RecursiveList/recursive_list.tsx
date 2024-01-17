@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ListBrowserData } from "ui/ListBrowser/list_browser";
 
 type RecursiveListProps = {
-    dataList: Array<ListBrowserData | any>
+    dataList: Array<ListBrowserData>
 }
 
 const RecursiveList = ({

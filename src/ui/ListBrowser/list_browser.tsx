@@ -9,7 +9,8 @@ import RecursiveList from 'ui/RecursiveList';
 type ListBrowserData = {
     id: string,
     name: string,
-    children: Array<ListBrowserData>
+    children: Array<ListBrowserData>,
+    [x: string | number | symbol]: unknown,
 }
 
 type ListBrowserProps = {
