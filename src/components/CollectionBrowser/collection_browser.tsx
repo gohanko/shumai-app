@@ -13,6 +13,7 @@ const CollectionBrowser = () => {
     const setIsAddNewCollection = useInterfaceStore((state: InterfaceStoreType) => state.setIsAddNewCollection)
     const collections = useCollectionStore((state: CollectionStoreType) => state.collections)
     const createCollection = useCollectionStore((state: CollectionStoreType) => state.createCollection);
+    const createTab = useInterfaceStore((state) => state.createTab);
 
     const onClickList = (event: React.MouseEvent) => {
         event.preventDefault();
@@ -46,6 +47,7 @@ const CollectionBrowser = () => {
                 />
             ]}
             onClickList={onClickList}
+            onClickListItemLabel={createTab}
             isInputOpen={isAddNewCollection}
             onInputKeyDown={onInputKeyDown}
         />

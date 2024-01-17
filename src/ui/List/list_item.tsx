@@ -51,36 +51,36 @@ const ListItemOption = ({ icon, onClick }: ListItemOptionType) => (
 
 type ListItemType = {
     navigationIcon: JSX.Element,
-    navigationIconOnClick?: () => void,
+    onClickNavigationIcon?: () => void,
     labelIcon: JSX.Element,
     labelText: string | JSX.Element,
-    labelOnClick?: () => void,
+    onClickLabel?: () => void,
     optionIcon?: JSX.Element,
-    optionIconOnClick?: () => void,
+    onClickOptionIcon?: () => void,
 }
 
 const ListItem = ({
     navigationIcon,
-    navigationIconOnClick,
+    onClickNavigationIcon,
     labelIcon,
     labelText,
-    labelOnClick,
+    onClickLabel,
     optionIcon,
-    optionIconOnClick
+    onClickOptionIcon
 }: ListItemType) =>  (
     <div className="w-80 h-9 pl-4 gap-2.5 flex hover:bg-zinc-800 cursor-pointer">
         <ListItemNavigationIcon
             icon={navigationIcon}
-            onClick={navigationIconOnClick}
+            onClick={onClickNavigationIcon}
         />
         <ListItemLabel
             icon={labelIcon}
             text={labelText}
-            onClick={labelOnClick}
+            onClick={onClickLabel}
         />
         <ListItemOption
             icon={optionIcon || <div />}
-            onClick={optionIconOnClick}
+            onClick={onClickOptionIcon}
         />
     </div>
 )

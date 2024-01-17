@@ -17,6 +17,7 @@ type ListBrowserProps = {
     dataList: Array<ListBrowserData>
     toolbarChildren: Array<JSX.Element>
     onClickList: (event: React.MouseEvent) => void,
+    onClickListItemLabel: (id: string) => void
     isInputOpen: boolean,
     onInputKeyDown: (event: React.KeyboardEvent<HTMLInputElement>) => void
 }
@@ -25,6 +26,7 @@ const ListBrowser = ({
     dataList,
     toolbarChildren,
     onClickList,
+    onClickListItemLabel,
     isInputOpen,
     onInputKeyDown
 }: ListBrowserProps) => (
@@ -34,7 +36,11 @@ const ListBrowser = ({
         </ListToolbar>
     
         <List onClick={onClickList}>
-            <RecursiveList dataList={dataList} />
+            <RecursiveList
+                dataList={dataList}
+                onClickLabel={onClickListItemLabel}
+            />
+
             { isInputOpen && 
             
                 <ListInput
