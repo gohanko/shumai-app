@@ -17,7 +17,6 @@ const Editor = () => {
             const tabElement = (
                 <Tab
                     key={tab.id}
-                    tabId={tab.id}
                     label={collection.name}
                     isActive={tab.id === activeTabID}
                     onClick={(event: React.MouseEvent) => {
@@ -27,6 +26,7 @@ const Editor = () => {
                             tabActions.select(tab.id);
                         }
                     }}
+                    onClickX={() => tabActions.delete(tab.id)}
                 />
             )
             
