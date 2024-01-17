@@ -5,11 +5,11 @@ import CreationModal from 'components/CreationModal';
 import Sidebar from 'components/Sidebar';
 import { Outlet } from 'react-router';
 
-type AppLayoutType = {
+type AppLayoutProps = {
     children?: React.ReactNode
 }
 
-const AppLayout = ({ children }: AppLayoutType) => (
+const AppLayout = ({ children }: AppLayoutProps) => (
     <div className='h-screen flex flex-col bg-zinc-900'>
         <Toolbar />
 

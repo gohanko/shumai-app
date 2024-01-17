@@ -2,7 +2,7 @@ import React from 'react';
 import InputField from 'ui/InputField';
 import ListItem from './list_item';
 
-type ListInputProp = {
+type ListInputProps = {
     navigationIcon: JSX.Element,
     labelIcon: JSX.Element,
     onKeyDown: (event: React.KeyboardEvent<HTMLInputElement>) => void
@@ -12,7 +12,7 @@ const ListInput = ({
     navigationIcon,
     labelIcon,
     onKeyDown
-}: ListInputProp) => (
+}: ListInputProps) => (
     <ListItem 
         navigationIcon={navigationIcon}
         labelIcon={labelIcon}

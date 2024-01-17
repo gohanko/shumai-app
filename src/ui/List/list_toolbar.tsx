@@ -1,10 +1,10 @@
 import React from "react";
 
-type ListToolbarType = {
+type ListToolbarProps = {
     children: React.ReactNode
 }
 
-const ListToolbar = ({ children }: ListToolbarType) => (
+const ListToolbar = ({ children }: ListToolbarProps) => (
     <div className='h-10'>
         { children }
     </div>

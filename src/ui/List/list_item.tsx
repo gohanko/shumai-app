@@ -1,11 +1,14 @@
 import React from "react"
 
-type ListItemNavigationIconType = {
+type ListItemNavigationIconProps = {
     icon: JSX.Element,
     onClick?: () => void
 }
 
-const ListItemNavigationIcon = ({ icon, onClick }: ListItemNavigationIconType) => (
+const ListItemNavigationIcon = ({
+    icon,
+    onClick
+}: ListItemNavigationIconProps) => (
     <div
         className="w-5 flex-2 flex items-center text-zinc-500"
         onClick={onClick}
@@ -14,13 +17,17 @@ const ListItemNavigationIcon = ({ icon, onClick }: ListItemNavigationIconType) =
     </div>
 );
 
-type ListItemLabelType = {
+type ListItemLabelProps = {
     icon: JSX.Element,
     text: string | JSX.Element,
     onClick?: () => void
 }
 
-const ListItemLabel = ({ icon, text, onClick }: ListItemLabelType) => (
+const ListItemLabel = ({
+    icon,
+    text,
+    onClick
+}: ListItemLabelProps) => (
     <div
         className="flex-1 h-9 gap-2.5 flex"
         onClick={onClick}
@@ -35,12 +42,12 @@ const ListItemLabel = ({ icon, text, onClick }: ListItemLabelType) => (
     </div>
 )
 
-type ListItemOptionType = {
+type ListItemOptionProps = {
     icon: JSX.Element,
     onClick?: () => void
 }
 
-const ListItemOption = ({ icon, onClick }: ListItemOptionType) => (
+const ListItemOption = ({ icon, onClick }: ListItemOptionProps) => (
     <div
         className="w-10 flex-initial flex items-center text-zinc-500"
         onClick={onClick}
@@ -49,7 +56,7 @@ const ListItemOption = ({ icon, onClick }: ListItemOptionType) => (
     </div>
 )
 
-type ListItemType = {
+type ListItemProps = {
     navigationIcon: JSX.Element,
     onClickNavigationIcon?: () => void,
     labelIcon: JSX.Element,
@@ -67,7 +74,7 @@ const ListItem = ({
     onClickLabel,
     optionIcon,
     onClickOptionIcon
-}: ListItemType) =>  (
+}: ListItemProps) =>  (
     <div className="w-80 h-9 pl-4 gap-2.5 flex hover:bg-zinc-800 cursor-pointer">
         <ListItemNavigationIcon
             icon={navigationIcon}
