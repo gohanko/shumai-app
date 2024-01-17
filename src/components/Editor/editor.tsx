@@ -1,15 +1,11 @@
 import React from "react";
-import { useCollectionStore, useInterfaceStore } from "stores";
-import { getCollectionFromId } from "stores/collection/collections";
+import { useCollection, getCollectionFromId, useTab, useTabActions } from "stores";
 import { TabList, Tab, TabContent } from "ui/Tabbing";
 
 const Editor = () => {
-    const collections = useCollectionStore((state) => state.collections);
-    const {
-        tabList,
-        activeTabID,
-        selectTab
-    } = useInterfaceStore((state) => state);
+    const collections = useCollection()
+    const { tabList, activeTabID } = useTab()
+    const tabActions = useTabActions();
 
     const generateTabListElements = () => {
         const tabListElements = tabList.map((tab) => {
@@ -28,7 +24,7 @@ const Editor = () => {
                         event.preventDefault();
                 
                         if (event.target === event.currentTarget) {
-                            selectTab(tab.id);
+                            tabActions.select(tab.id);
                         }
                     }}
                 />

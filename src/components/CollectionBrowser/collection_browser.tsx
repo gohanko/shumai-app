@@ -1,30 +1,30 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
-import { useCollectionStore, useInterfaceStore } from "stores";
-import { CollectionStoreType } from "stores/collection";
-import { InterfaceStoreType } from "stores/interface";
+import {
+    useCollection,
+    useCollectionAction,
+    useCollectionBrowser,
+    useCollectionBrowserActions,
+    useCreationModalActions,
+    useTabActions
+} from "stores";
 import IconButton from "ui/IconButton";
 import ListBrowser from "ui/ListBrowser";
 
 const CollectionBrowser = () => {
-    const {
-        isAddNewCollection,
-        toggleCreationModal,
-        setIsAddNewCollection,
-        createTab,
-    } = useInterfaceStore((state: InterfaceStoreType) => state);
-    
-    const {
-        collections,
-        createCollection,
-    } = useCollectionStore((state: CollectionStoreType) => state);
+    const tabActions = useTabActions();
+    const creationModalActions = useCreationModalActions()
+    const isInputOpen = useCollectionBrowser();
+    const collectionBrowserActions = useCollectionBrowserActions();
+    const collections = useCollection()
+    const collectionActions = useCollectionAction();
     
     const onClickList = (event: React.MouseEvent) => {
         event.preventDefault();
 
         if (event.target === event.currentTarget) {
-            setIsAddNewCollection(false);
+            collectionBrowserActions.setIsOpenNewInput(false);
         }
     }
 
@@ -38,8 +38,8 @@ const CollectionBrowser = () => {
             return;
         }
 
-        createCollection(value);
-        setIsAddNewCollection(false);
+        collectionActions.create(value);
+        collectionBrowserActions.setIsOpenNewInput(false);
     }
 
     return (
@@ -48,12 +48,12 @@ const CollectionBrowser = () => {
             toolbarChildren={[
                 <IconButton
                     icon={<FontAwesomeIcon icon={faPlus} />}
-                    onClick={toggleCreationModal}    
+                    onClick={creationModalActions.toggle}    
                 />
             ]}
             onClickList={onClickList}
-            onClickListItemLabel={createTab}
-            isInputOpen={isAddNewCollection}
+            onClickListItemLabel={tabActions.create}
+            isInputOpen={isInputOpen}
             onInputKeyDown={onInputKeyDown}
         />
     )

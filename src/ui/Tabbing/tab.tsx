@@ -2,7 +2,7 @@ import React from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import IconButton from "ui/IconButton";
-import { useInterfaceStore } from "stores";
+import { useTabActions } from "stores";
 
 type TabProps = {
     tabId: string,
@@ -12,7 +12,7 @@ type TabProps = {
 }
 
 const Tab = ({ tabId, label, isActive, onClick }: TabProps) => {
-    const deleteTab = useInterfaceStore(store => store.deleteTab)
+    const tabActions = useTabActions()
 
     return (
         <div
@@ -27,7 +27,7 @@ const Tab = ({ tabId, label, isActive, onClick }: TabProps) => {
             </p>
             <IconButton
                 icon={<FontAwesomeIcon icon={faXmark} />}
-                onClick={() => deleteTab(tabId)}
+                onClick={() => tabActions.delete(tabId)}
             />
         </div>
     )

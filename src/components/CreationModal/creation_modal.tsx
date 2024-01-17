@@ -2,8 +2,7 @@ import React from "react";
 import IconButton from "ui/IconButton";
 import { faXmark, faFolderOpen, faCubes, IconDefinition } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useInterfaceStore } from "stores";
-import { InterfaceStoreType } from "stores/interface";
+import { useCreationModal, useCreationModalActions, useCollectionBrowserActions } from "stores";
 
 type CreationModalItemProps = {
     icon: IconDefinition,
@@ -26,28 +25,25 @@ const CreationModalItem = ({
 )
 
 const CreationModal = () => {
-    const {
-        isCreationModalOpen,
-        closeCreationModal,
-        setIsAddNewCollection,
-    } = useInterfaceStore((state: InterfaceStoreType) => state);
+    const isOpen = useCreationModal();
+    const creationModalActions = useCreationModalActions();
+    const collectionBrowserActions = useCollectionBrowserActions();
 
     return (
         <>
-        { isCreationModalOpen &&
+        { isOpen &&
             <>
                 <div
                     className="h-full w-full absolute"
-                    onClick={closeCreationModal}
-                >
-                </div>
+                    onClick={creationModalActions.close}
+                />
                 <div className="w-1/2 h-2/3 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col bg-zinc-900 border-solid border border-zinc-700 rounded-md">
                     <div className="h-10 flex">
                         <div className="flex-1 items-start"></div>
                         <div className="flex-1 flex justify-end">
                             <IconButton
                                 icon={<FontAwesomeIcon icon={faXmark} />}
-                                onClick={closeCreationModal}
+                                onClick={creationModalActions.toggle}
                             />
                         </div>
                     </div>
@@ -56,16 +52,15 @@ const CreationModal = () => {
                             icon={faCubes}
                             label={'Collections'}
                             onClick={() => {
-                                setIsAddNewCollection(true)
-                                closeCreationModal()
+                                collectionBrowserActions.setIsOpenNewInput(true)
+                                creationModalActions.close()
                             }}
                         />
                         <CreationModalItem
                             icon={faFolderOpen}
                             label={'File'}
                             onClick={() => {
-                                
-                                closeCreationModal();
+                                creationModalActions.close();
                             }}
                         />
                     </div>
