@@ -12,25 +12,17 @@ type CollectionType = {
 
 type CollectionsSliceType = {
     collections: CollectionType[],
-    initializeCollection: () => void,
     createCollection: (name: string, input?: string, category?: number, parent?: CollectionType) => void,
     updateCollection: (new_collection: CollectionType) => void,
     deleteCollection: (id: string) => void,
 }
 
 const createCollectionsSlice: StateCreator<CollectionsSliceType> = (set) => ({
-    collections: [],
-    initializeCollection: () => set(
-        produce((draft: CollectionsSliceType) => {
-            if (!draft.collections.length) {
-                draft.collections.push({
-                    id: 'default-collection',
-                    name: 'Default Collection',
-                    children: [],
-                })
-            }
-        })
-    ),
+    collections: [{
+        id: 'default-collection',
+        name: 'Default Collection',
+        children: []
+    }],
     createCollection: (name: string, input?: string, category?: number, parent?: CollectionType) => set(
         produce((draft: CollectionsSliceType) => {
             const newCollection = {
