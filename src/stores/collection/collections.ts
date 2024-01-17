@@ -18,15 +18,13 @@ type CollectionsSliceType = {
     deleteCollection: (id: string) => void,
 }
 
-const default_collection_id = 'default-collection'
-
 const createCollectionsSlice: StateCreator<CollectionsSliceType> = (set) => ({
     collections: [],
     initializeCollection: () => set(
         produce((draft: CollectionsSliceType) => {
             if (!draft.collections.length) {
                 draft.collections.push({
-                    id: default_collection_id,
+                    id: 'default-collection',
                     name: 'Default Collection',
                     children: [],
                 })
