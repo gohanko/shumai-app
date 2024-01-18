@@ -10,6 +10,12 @@ import "@fontsource/inter";
 import './index.css';
 import Workspace from './pages/Workspace';
 
+declare global {
+    interface Window {
+        __TAURI__: Record<string, unknown>;
+    }
+}
+
 const router = createBrowserRouter([
     {
         path: '/',

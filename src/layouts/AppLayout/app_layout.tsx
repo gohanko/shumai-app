@@ -10,7 +10,7 @@ type AppLayoutProps = {
 }
 
 const AppLayout = ({ children }: AppLayoutProps) => (
-    <div className='h-screen flex flex-col bg-zinc-900'>
+    <div className='h-screen flex flex-col bg-zinc-900 border-solid border border-zinc-600'>
         <Toolbar />
 
         <div className="w-full flex-1 flex">
