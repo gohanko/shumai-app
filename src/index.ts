@@ -1,18 +1,6 @@
-import process from 'process'
-import { JSONRPCServer } from "json-rpc-2.0";
-import PluginManager from "./plugins/plugin_manager";
-import { initializeServer, listen } from "./rpc/server"
+import jayson from 'jayson'
+import indexRoute from './routes'
 
-const rpcServer = new JSONRPCServer();
-const pluginManager = new PluginManager();
+const server = new jayson.Server(indexRoute)
 
-initializeServer(rpcServer, pluginManager);
-
-process.stdin.setEncoding('utf8')
-process.stdin.on('data', (data) => {
-    const inputJson = JSON.parse(data.toString())
-
-    listen(rpcServer, inputJson, (responseData) => {
-        console.log(responseData)
-    })
-})
+server.websocket({ port: 8000 })

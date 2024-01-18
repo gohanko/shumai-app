@@ -1,0 +1,6 @@
+[
+    {
+        "name": "csv-loader",
+        "packageName": "./default_plugins/csv-loader"
+    }
+]

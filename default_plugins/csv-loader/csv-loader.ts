@@ -1,15 +1,15 @@
 import path from "path";
 import fs from 'fs';
 import xlsx from 'xlsx';
-import DataSourcePlugin from "../../src/plugins/contract";
+import DataLoaderPlugin from "../../src/plugins/contract";
 
-class CSVLoader extends DataSourcePlugin {
-    isFileFormatSupported(filename: string) {
+class CSVLoader extends DataLoaderPlugin {
+    _isFileFormatSupported(filename: string) {
         const extension = path.extname(filename);
         return extension === '.csv';
     }
 
-    readCSVFile(filename: string) {
+    _readCSVFile(filename: string) {
         const rawData = fs.readFileSync(filename);
         const workbook = xlsx.read(rawData, { raw: true, cellDates: true });
 
@@ -21,19 +21,17 @@ class CSVLoader extends DataSourcePlugin {
         return parsedData;
     }
 
-    getLabel() {
-        return 'CSV Loader'
-    }
-
-    getLoader() {
-        return (uri: string) => {
-            if (!this.isFileFormatSupported(uri)) {
-                throw new Error('File format not supported.')
-            }
-    
-            let parsedData: any[] = this.readCSVFile(uri);
-            return parsedData;
+    getDataLoader(uri: string) {
+        if (!this._isFileFormatSupported(uri)) {
+            throw new Error('File format not supported.')
         }
+
+        let parsedData: any[] = this._readCSVFile(uri);
+        
+        return {
+            source_uri: uri,
+            data: parsedData
+        };
     }
 }
 

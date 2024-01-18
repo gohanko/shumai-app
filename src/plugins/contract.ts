@@ -1,6 +1,7 @@
-abstract class DataSourcePlugin {
-    abstract getLabel(): any;
-    abstract getLoader(): any;
+import { TableDataFormatType } from '../types/data_type'
+
+abstract class DataLoaderPlugin {
+    abstract getDataLoader(uri: string): TableDataFormatType;
 }
 
-export default DataSourcePlugin;
+export default DataLoaderPlugin;

@@ -1,28 +1,26 @@
 import path from "path";
+import { IPlugin } from '../types/plugin'
 import requireModule from '../shared/require_module';
 
-type IPlugin = {
-    name: string
-    packageName: string,
-    isRelative?: boolean,
-    instance?: any;
-    options?: any;
+type PluginConfigType = {
+    name: string,
+    plugin: IPlugin
 }
 
 class PluginManager {
-    private pluginList: Map<string, IPlugin>;
+    private pluginList: Array<PluginConfigType>;
 
     constructor() {
-        this.pluginList = new Map();
+        this.pluginList = [];
     }
 
-    _pluginExists(pluginName: string): boolean {
-        const plugin = this.pluginList.get(pluginName);
+    isPluginExists(pluginName: string): boolean {
+        const plugin = this.pluginList.find(pluginConfig => pluginConfig.name == pluginName);
         return Boolean(plugin);
     }
 
-    _addPlugin(plugin: IPlugin, packageContents: any) {
-        this.pluginList.set(plugin.name, { ...plugin, instance: packageContents })
+    addPlugin(plugin: IPlugin, packageContents: any) {
+        this.pluginList.push({ name: plugin.name, plugin: { ...plugin, instance: packageContents } })
     }
         
     registerPlugin(plugin: IPlugin) {
@@ -30,8 +28,8 @@ class PluginManager {
             throw new Error('The plugin name and package are required.');
         }
 
-        if (this._pluginExists(plugin.name)) {
-            throw new Error(`Cannot add existing plugin ${plugin.name}`);
+        if (this.isPluginExists(plugin.name)) {
+            throw new Error(`Pluging with name "${plugin.name}" already exist.`);
         }
 
         try {
@@ -39,29 +37,25 @@ class PluginManager {
                 ? requireModule(path.join(__dirname, plugin.packageName)) 
                 : requireModule(plugin.packageName);
 
-            this._addPlugin(plugin, packageContents);
+            this.addPlugin(plugin, packageContents);
         } catch (error) {
-            throw new Error(`Cannot load plugin ${plugin.name}: ${error}`);
+            throw new Error(`Cannot load plugin: ${plugin.name}: ${error}`);
         }
     }
 
     loadPlugin<T>(name: string): T {
-        const plugin = this.pluginList.get(name);
+        const plugin = this.pluginList.find(pluginConfig => pluginConfig.name == name);
         if (!plugin) {
-          throw new Error(`Cannot find plugin ${name}`);
+          throw new Error(`Cannot find plugin: ${name}`);
         }
         
-        plugin.instance.default.prototype.options = plugin.options;
-        return Object.create(plugin?.instance.default.prototype) as T;
+        plugin.plugin.instance.default.prototype.options = plugin.plugin.options;
+        return Object.create(plugin?.plugin.instance.default.prototype) as T;
     }
 
-    listPlugin() {
-        return this.pluginList;
+    getPluginList() {
+        return JSON.stringify(this.pluginList);
     }
-}
-
-export type {
-    IPlugin
 }
 
 export default PluginManager;
