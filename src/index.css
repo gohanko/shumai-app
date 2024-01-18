@@ -1,7 +1,13 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+@import 'overlayscrollbars/overlayscrollbars.css';
 
-body {
-    height: 100vh;
+/* https://github.com/KingSora/OverlayScrollbars#css-custom-properties */
+.scrollbar-custom-theme {
+  --os-size: 5px;
+  --os-handle-bg: theme('colors.zinc.700');
+  --os-handle-bg-hover: theme('colors.zinc.700');
+  --os-handle-bg-active: theme('colors.zinc.700');
+
 }
