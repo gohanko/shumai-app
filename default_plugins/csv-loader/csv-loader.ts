@@ -1,0 +1,40 @@
+import path from "path";
+import fs from 'fs';
+import xlsx from 'xlsx';
+import DataSourcePlugin from "../../src/plugins/contract";
+
+class CSVLoader extends DataSourcePlugin {
+    isFileFormatSupported(filename: string) {
+        const extension = path.extname(filename);
+        return extension === '.csv';
+    }
+
+    readCSVFile(filename: string) {
+        const rawData = fs.readFileSync(filename);
+        const workbook = xlsx.read(rawData, { raw: true, cellDates: true });
+
+        const parsedData = Object.keys(workbook.Sheets).map((sheetName: string) => {
+            const sheet = workbook.Sheets[sheetName]
+            return xlsx.utils.sheet_to_json(sheet, { header: 1 });
+        })
+
+        return parsedData;
+    }
+
+    getLabel() {
+        return 'CSV Loader'
+    }
+
+    getLoader() {
+        return (uri: string) => {
+            if (!this.isFileFormatSupported(uri)) {
+                throw new Error('File format not supported.')
+            }
+    
+            let parsedData: any[] = this.readCSVFile(uri);
+            return parsedData;
+        }
+    }
+}
+
+export default CSVLoader;

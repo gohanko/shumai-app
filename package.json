@@ -4,15 +4,23 @@
   "description": "RPC server for [shumai-app](https://github.com/gohanko/shumai-app) responsible for running plugins (DataLoader, DataTransformer).",
   "main": "index.js",
   "scripts": {
-    "start": "tsc",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "cross-env NODE_ENV=development nodemon",
+    "start": "npm run build && cross-env NODE_ENV=production node dist/index.js",
+    "build": "tsc"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "json-rpc-2.0": "^1.7.0"
+    "json-rpc-2.0": "^1.7.0",
+    "resolve": "^1.22.8",
+    "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.1/xlsx-0.20.1.tgz"
   },
   "devDependencies": {
+    "@types/node": "^20.11.5",
+    "cross-env": "^7.0.3",
+    "nodemon": "^3.0.3",
+    "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
     "typescript": "^5.3.3"
   }
 }
