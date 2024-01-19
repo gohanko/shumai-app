@@ -2,6 +2,7 @@ import path from "path";
 import fs from 'fs';
 import xlsx from 'xlsx';
 import DataLoaderPlugin from "../../src/plugins/contract";
+import { TableDataFormatType } from "../../src/types/data_type";
 
 class CSVLoader extends DataLoaderPlugin {
     _isFileFormatSupported(filename: string) {
@@ -21,7 +22,7 @@ class CSVLoader extends DataLoaderPlugin {
         return parsedData;
     }
 
-    getDataLoader(uri: string) {
+    load(uri: string): TableDataFormatType {
         if (!this._isFileFormatSupported(uri)) {
             throw new Error('File format not supported.')
         }

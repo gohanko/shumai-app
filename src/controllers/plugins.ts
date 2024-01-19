@@ -13,8 +13,8 @@ const listInstalledPlugins = (args, done) => {
 const loadDataUsingDataLoader = (args, done) => {
     try {
         const packageName = args?.packageName;
-        const plugin: DataLoaderPlugin = pluginManager.loadPlugin(packageName)
-        const data = plugin.getDataLoader(args.uri)
+        const dataLoader: DataLoaderPlugin = pluginManager.loadPlugin(packageName)
+        const data = dataLoader.load(args.uri)
         done(null, data)
     } catch (error) {
         const errorResponse = {
