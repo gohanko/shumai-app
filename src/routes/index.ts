@@ -1,8 +1,8 @@
 import collapse from '../shared/collapse'
-import pluginsRoute from "./plugins"
+import loadersRoute from "./loaders"
 
 const combinedRoute = {
-    ...pluginsRoute
+    ...loadersRoute
 }
 
 const rootRoute = Object.keys(combinedRoute).reduce(collapse('', '.', combinedRoute), {});

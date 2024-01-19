@@ -1,8 +1,8 @@
 import path from "path";
 import fs from 'fs';
 import xlsx from 'xlsx';
-import DataLoaderPlugin from "../../src/plugins/contract";
-import { TableDataFormatType } from "../../src/types/data_type";
+import DataLoaderPlugin from "../contract";
+import { TableDataFormatType } from "../../types/data_type";
 
 class CSVLoader extends DataLoaderPlugin {
     _isFileFormatSupported(filename: string) {
